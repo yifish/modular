@@ -23,10 +23,14 @@ class Cipher
 
     protected $checkPassword = '';
 
-    public function __construct($password, $ranDomCode = '', $checkPassword = '')
+    public function __construct($password, $ranDomCode = true, $checkPassword = '')
     {
         $this->password = $password;
-        $this->ranDomCode = $ranDomCode;
+        if (is_string($ranDomCode)) {
+            $this->ranDomCode = $ranDomCode;
+        } else {
+            $this->ranDomCode = $this->getString();
+        }
         $this->checkPassword = $checkPassword;
     }
 
@@ -69,6 +73,9 @@ class Cipher
      */
     public function getString()
     {
+        if ($this->ranDomCode != '') {
+            return $this->ranDomCode;
+        }
         $randomString = '';
         for ($i = 0; $i < $this->ranDomCodeNumber; $i++) {
             $randomString .= $this->varChar[rand(0, strlen($this->varChar) - 1)];
