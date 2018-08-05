@@ -15,12 +15,14 @@ class Admin extends Migration
     {
         //
         Schema::create('admin', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 50);
-            $table->string('loginName', 20)->unique();
-            $table->string('password', 64);
-            $table->string('random', 6);
-            $table->tinyInteger('role', 3)->default(1);
+            $table->increments('id')->comment('后台管理员');
+            $table->string('name', 50)->comment('管理员名称');
+            $table->string('loginName', 20)->unique()->comment('登陆账号');
+            $table->string('password', 60)->comment('密码');
+            $table->string('random', 6)->comment('随机码');
+            $table->string('token', 64)->nullable()->comment('验证码');
+            $table->string('loginTime',13)->default(0)->comment('最后一次登陆时间');
+            $table->tinyInteger('role')->default(1)->comment('角色');
             $table->timestamps();
         });
     }
