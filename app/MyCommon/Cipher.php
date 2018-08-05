@@ -15,29 +15,31 @@ class Cipher
 {
     protected $varChar = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    public function __construct()
-    {
-    }
+    protected $ranDomCodeNumber = 6;
 
-    /**
-     * 自定义密码加密
-     * @param $string string 密码字符串
-     * @return string 返回字符串
-     */
-    public function rule($string)
+    protected $ranDomCode = '';
+
+    protected $password = '';
+
+    protected $checkPassword = '';
+
+    public function __construct($password, $ranDomCode = '', $checkPassword = '')
     {
-        return $string;
+        $this->password = $password;
+        $this->ranDomCode = $ranDomCode;
+        $this->checkPassword = $checkPassword;
     }
 
     /**
      * 加密密码
      * @param $string string 密码字符串
+     * @param $ranDomCode string 随机密钥串
      * @return string 返回字符串
      */
-    public function encryption($string, $ranDomCode = '')
+    public function encryption()
     {
-        $string = $this->setMD5($string . $ranDomCode);
-        return bcrypt($this->rule($string));
+        $this->password = $this->setMD5($this->password . $this->ranDomCode);
+        return bcrypt($this->rule($this->password));
     }
 
     /**
@@ -53,16 +55,39 @@ class Cipher
         return $string;
     }
     /**
-     * 生成随机字符串
-     * @param $number number 随机生成字符的长度
+     * 自定义密码加密
+     * @param $string string 密码字符串
      * @return string 返回字符串
      */
-    public function getString($number)
+    public function rule($string)
+    {
+        return $string;
+    }
+    /**
+     * 生成随机字符串
+     * @return string 返回字符串
+     */
+    public function getString()
     {
         $randomString = '';
-        for ($i = 0; $i < $number; $i++) {
+        for ($i = 0; $i < $this->ranDomCodeNumber; $i++) {
             $randomString .= $this->varChar[rand(0, strlen($this->varChar) - 1)];
         }
         return $randomString;
+    }
+
+    /**
+     * 验证密码
+     * @return bool true 验证成功 false 失败
+     */
+    public function checkPassword()
+    {
+        if ($this->checkPassword == '') {
+            return false;
+        }
+        if ($this->checkPassword == $this->encryption()) {
+            return true;
+        }
+        return false;
     }
 }
