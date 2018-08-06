@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
-    $api->group(['namespace' => 'App\Api\Controllers\admin'], function ($api) {
+    $api->group(['namespace' => 'App\Http\Controllers\Admin'], function ($api) {
         $api->get('login', 'LoginController@login');
     });
 });
