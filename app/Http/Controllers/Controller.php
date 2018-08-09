@@ -12,6 +12,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function __construct()
+    {
+    }
+
     public static function makeApiResponse($data = [], $code = Code::SUCCESS, $message = "ok"){
         return Response([
             'code' => $code,

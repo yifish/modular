@@ -10,6 +10,7 @@ namespace App\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
 use Dingo\Api\Http\Request;
+use App\Exceptions\AbnormalException;
 
 class PostRequest extends Request
 {
@@ -26,9 +27,9 @@ class PostRequest extends Request
     {
         try {
             $validator = Validator::make($this->all(), $this->$functions());
-            dd($validator->errors());
+
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            throw new AbnormalException('404', trans(''));
         }
     }
 
