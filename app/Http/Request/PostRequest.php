@@ -8,29 +8,24 @@
 
 namespace App\Http\Request;
 
-use Illuminate\Support\Facades\Validator;
-use Dingo\Api\Http\Request;
 use App\Exceptions\AbnormalException;
+use App\Exceptions\ValidatorException;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class PostRequest extends Request
 {
-    public function index()
-    {
-        return [
-            'title' => 'required|unique:posts|max:255',
-            'body' => 'required',
-            'publish_at' => 'nullable|date',
-        ];
-    }
-
-    public function myValidator($functions = 'index')
+    public function myValidator($functions = 'login')
     {
         try {
-            $validator = Validator::make($this->all(), $this->$functions());
-
+            $validator = Validator::make(request()->all(), ValidatorRequest::get($functions));
         } catch (\Exception $e) {
-            throw new AbnormalException('404', trans(''));
+            throw new AbnormalException(404, $e->getMessage());
+        }
+        $message = $validator->errors();
+        if ($message){
+            throw new ValidatorException(422, $message->first());
         }
     }
-
 }

@@ -63,15 +63,15 @@ return [
     ],
     'not_in'               => '选定的 :attribute 是无效的',
     'numeric'              => ':attribute 必须是数字',
-    'present'              => ':attribute 字段必须存在',
+    'present'              => ':attribute 必须存在',
     'regex'                => ':attribute 格式是无效的',
-    'required'             => ':attribute 字段是必须的',
-    'required_if'          => ':attribute 字段是必须的当 :other 是 :value',
-    'required_unless'      => ':attribute 字段是必须的，除非 :other 是在 :values 中',
-    'required_with'        => ':attribute 字段是必须的当 :values 是存在的',
-    'required_with_all'    => ':attribute 字段是必须的当 :values 是存在的',
-    'required_without'     => ':attribute 字段是必须的当 :values 是不存在的',
-    'required_without_all' => ':attribute 字段是必须的当 没有一个 :values 是存在的',
+    'required'             => ':attribute 是必须的',
+    'required_if'          => ':attribute 是必须的当 :other 是 :value',
+    'required_unless'      => ':attribute 是必须的，除非 :other 是在 :values 中',
+    'required_with'        => ':attribute 是必须的当 :values 是存在的',
+    'required_with_all'    => ':attribute 是必须的当 :values 是存在的',
+    'required_without'     => ':attribute 是必须的当 :values 是不存在的',
+    'required_without_all' => ':attribute 是必须的当 没有一个 :values 是存在的',
     'same'                 => ':attribute和:other必须匹配',
     'size'                 => [
         'numeric' => ':attribute 必须是 :size 位',
@@ -113,8 +113,8 @@ return [
     */
 
     'attributes' => [
-        // 'name'         => '名字',
-        // 'age'         => '年龄',
+        'loginName'         => '账号',
+        'password'         => '密码'
     ],
 
 ];
