@@ -7,12 +7,15 @@
  */
 namespace App\Http\Controllers\admin;
 
-use App\Http\Request\PostRequest;
+use Illuminate\Http\Request;
+use App\MyService\loginService;
 
 class LoginController extends AdminController
 {
-    public function login(PostRequest $request)
+    public function login(Request $request)
     {
-        $request->myValidator('login');
+        $this->myValidator('login', $request);
+        $login = new loginService();
+
     }
 }
