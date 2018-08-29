@@ -9,15 +9,35 @@
 namespace App\MyService;
 
 use App\MyCommon\Token;
+use App\MyCommon\Cipher;
+use Illuminate\Http\Request;
 use App\MyModel\adminModel;
 use App\Exceptions\SuccessException;
 use App\Code;
 
-class loginService
+class loginService extends service
 {
+    private $cipher;
+
     public function __construct()
     {
-        $this->token = new Token();
+    }
+
+    /*
+     * 后台登陆
+     * */
+    public function adminLogin(Request $request)
+    {
+        $admin = adminModel::where(array('loginName'=>$request->loginName))->first();
+        if (empty($admin)) {
+            return $this->makeApiResponse([], Code::USERNAME_ERROR, trans('login.no_admin_account'));
+        }
+        $cipher = new Cipher($request->password, $admin->random, $admin->password);
+        if (!$cipher->checkPassword()) {
+            return $this->makeApiResponse([], Code::USER_PASSWORD_ERROR, trans('login.no_password'));
+        }
+        $token = new Token();
+        return $this->makeApiResponse(['token' => $token->encryption()]);
     }
 
 

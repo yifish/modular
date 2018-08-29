@@ -6,7 +6,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use App\Code;
 use App\Exceptions\AbnormalException;
 use App\Http\Request\ValidatorRequest;
 use App\Exceptions\ValidatorException;
@@ -19,14 +18,6 @@ class Controller extends BaseController
 
     public function __construct()
     {
-    }
-
-    public function makeApiResponse($data = [], $code = Code::SUCCESS, $message = "ok"){
-        return Response([
-            'code' => $code,
-            'message' => $message,
-            'data' => $data
-        ]);
     }
 
     public function myValidator($functions = 'login', Request $request)

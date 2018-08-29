@@ -29,15 +29,22 @@ class Cipher extends CipherCommon
     }
     /**
      * 加密密码
-     * @param $string string 密码字符串
-     * @param $ranDomCode string 随机密钥串
      * @return string 返回字符串
      */
     public function encryption()
     {
         $this->password = $this->setMD5($this->password . $this->ranDomCode);
-        return bcrypt($this->rule($this->password));
+        return encrypt($this->rule($this->password));
     }
+    /**
+     * 生成加密之前的密码
+     * @return string 返回字符串
+     */
+    public function dccryption()
+    {
+        return $this->password = $this->setMD5($this->password . $this->ranDomCode);
+    }
+
     /**
      * 自定义密码加密
      * @param $string string 密码字符串
@@ -56,7 +63,7 @@ class Cipher extends CipherCommon
         if ($this->checkPassword == '') {
             return false;
         }
-        if ($this->checkPassword == $this->encryption()) {
+        if (decrypt($this->checkPassword) == $this->dccryption()) {
             return true;
         }
         return false;

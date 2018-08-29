@@ -15,8 +15,8 @@ class Token extends CipherCommon
 {
     public function __construct($ranDomCodeNumber = 32)
     {
-        $this->ranDomCode = $this->getString();
         $this->ranDomCodeNumber = $ranDomCodeNumber;
+        $this->ranDomCode = $this->getString();
     }
     /**
      * 自定义token加密

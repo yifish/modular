@@ -16,6 +16,6 @@ class LoginController extends AdminController
     {
         $this->myValidator('login', $request);
         $login = new loginService();
-
+        return $login->adminLogin($request);
     }
 }
