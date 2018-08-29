@@ -10,7 +10,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class Admin extends Controller
 {
     public function __construct()
     {

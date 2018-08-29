@@ -10,7 +10,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\MyService\loginService;
 
-class LoginController extends AdminController
+class Login extends Admin
 {
     public function login(Request $request)
     {
