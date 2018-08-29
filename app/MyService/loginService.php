@@ -12,7 +12,6 @@ use App\MyCommon\Token;
 use App\MyCommon\Cipher;
 use Illuminate\Http\Request;
 use App\MyModel\adminModel;
-use App\Exceptions\SuccessException;
 use App\Code;
 
 class loginService extends service
@@ -36,8 +35,13 @@ class loginService extends service
         if (!$cipher->checkPassword()) {
             return $this->makeApiResponse([], Code::USER_PASSWORD_ERROR, trans('login.no_password'));
         }
-        $token = new Token();
-        return $this->makeApiResponse(['token' => $token->encryption()]);
+        $tokenClass = new Token();
+        $token = $tokenClass->encryption();
+        $admin->token = $token;
+        if ($admin->save()) {
+            return $this->makeApiResponse(['token' => $token]);
+        }
+        return $this->makeApiResponse([], Code::USER_PASSWORD_ERROR, trans('login.no_password'));
     }
 
 
