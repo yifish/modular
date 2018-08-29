@@ -14,7 +14,6 @@ class Role extends Migration
     public function up()
     {
         //
-
         Schema::create('competence', function (Blueprint $table) {
             $table->increments('id')->comment('权限表');
             $table->string('name', 50)->default('')->comment('权限中文名称');
