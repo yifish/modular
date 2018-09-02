@@ -33,7 +33,8 @@ class Cipher extends CipherCommon
      */
     public function encryption()
     {
-        $this->password = $this->setMD5($this->password . $this->ranDomCode);
+//        $this->password = $this->setMD5($this->password . $this->ranDomCode);
+        $this->dccryption();
         return encrypt($this->rule($this->password));
     }
     /**
