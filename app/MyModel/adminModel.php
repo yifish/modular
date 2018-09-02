@@ -13,4 +13,12 @@ use Illuminate\Database\Eloquent\Model;
 class adminModel extends Model
 {
     protected $table = 'admin';
+
+    /*
+     * 关联角色表
+     * */
+    public function role()
+    {
+        return $this->hasOne('roleModel', 'id', 'role');
+    }
 }
