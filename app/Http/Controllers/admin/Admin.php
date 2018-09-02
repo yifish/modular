@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\MyService\adminService;
 
 class Admin extends Controller
 {
@@ -16,5 +17,14 @@ class Admin extends Controller
     {
         parent::__construct();
     }
+    /*
+     * 管理员信息
+     * */
+    public function info()
+    {
+        $adminService = new adminService();
+        return $adminService->info();
+    }
+
 
 }
