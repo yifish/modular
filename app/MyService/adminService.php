@@ -10,10 +10,12 @@ namespace App\MyService;
 
 use App\MyCommon\Menu;
 use App\MyTrait\AdminTrait;
+use App\MyTrait\CompetenceTrait;
+use App\MyModel\competenceModel;
 
 class adminService extends service
 {
-    use AdminTrait;
+    use AdminTrait,CompetenceTrait;
 
     private $admin;
 
@@ -27,7 +29,6 @@ class adminService extends service
      * */
     public function info()
     {
-
         return $this->makeApiResponse([
             'name' => $this->admin->name,
             'menu' => $this->menu()
@@ -41,7 +42,34 @@ class adminService extends service
         if ($this->admin->roles['competence'] == '*') {
             return Menu::master;
         }
-        return Menu::master;
+        return $this->competenceMenu();
+    }
+    /*
+     * 获取管理员权限的左侧菜单
+     * */
+    public function competenceMenu()
+    {
+        $comIdStr = trim($this->admin->roles['competence'], ',');
+        $competence = $this->getCompetenceId($comIdStr)->toArray();
+        $competence = ',' . implode(',', array_column($competence, 'competence')) . ',';
+        return $this->getMenu($competence, Menu::master);
+    }
+    /*
+     * 递归获取左侧菜单
+     * */
+    private function getMenu($competence, $array = array())
+    {
+        $arr = array();
+        foreach ($array as $key => $val) {
+            if (is_array($val)) {
+                $arr[] = array('name' => $val['name'], 'enName' => $key, 'submenu' => $this->getMenu($competence, $val['submenu']));
+            } else {
+                if (strpos($competence,',' . $key . ',',1)) {
+                    $arr[] = array('name' => $val, 'enName' => $key);
+                }
+            }
+        }
+        return $arr;
     }
 
 }

@@ -21,11 +21,20 @@ class competence extends Seeder
         foreach ($competence as $key => $val) {
             DB::table('competence')->insert([
                 'id' => $id,
-                'name' => $val,
+                'name' => $val['name'],
                 'competence' => $key,
                 'created_at' => date('Y-m-d H:i:s', time())
             ]);
             $id++;
+            foreach ($val['competence'] as $k => $v) {
+                DB::table('competence')->insert([
+                    'id' => $id,
+                    'name' => $v,
+                    'competence' => $k,
+                    'created_at' => date('Y-m-d H:i:s', time())
+                ]);
+                $id++;
+            }
         }
     }
 }
