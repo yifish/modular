@@ -11,9 +11,11 @@ namespace App\MyService;
 use App\Code;
 use App\MyCommon\Menu;
 use App\MyModel\adminModel;
+use App\MyTrait\adminTrait;
 
 class adminService extends service
 {
+    use adminTrait;
     /*
      * 返回给前端的管理员信息
      * */
@@ -24,15 +26,6 @@ class adminService extends service
             'name' => $admin->name,
             'menu' => $this->menu()
         ]);
-    }
-
-    /*
-     * 获取管理员的信息
-     * */
-    public function getAdmin()
-    {
-        $adminId = config('program.ADMINID');
-        return adminModel::where(['id' => $adminId])->first();
     }
     /*
      * 返回左侧菜单
