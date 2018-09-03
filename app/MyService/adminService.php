@@ -8,22 +8,28 @@
 
 namespace App\MyService;
 
-use App\Code;
 use App\MyCommon\Menu;
-use App\MyModel\adminModel;
-use App\MyTrait\adminTrait;
+use App\MyTrait\AdminTrait;
 
 class adminService extends service
 {
-    use adminTrait;
+    use AdminTrait;
+
+    private $admin;
+
+    public function __construct()
+    {
+        $this->admin = $this->getAdmin();
+    }
+
     /*
      * 返回给前端的管理员信息
      * */
     public function info()
     {
-        $admin = $this->getAdmin();
+
         return $this->makeApiResponse([
-            'name' => $admin->name,
+            'name' => $this->admin->name,
             'menu' => $this->menu()
         ]);
     }
@@ -32,6 +38,9 @@ class adminService extends service
      * */
     public function menu()
     {
+        if ($this->admin->roles['competence'] == '*') {
+            return Menu::master;
+        }
         return Menu::master;
     }
 

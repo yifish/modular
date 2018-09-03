@@ -17,8 +17,8 @@ class adminModel extends Model
     /*
      * 关联角色表
      * */
-    public function role()
+    public function roles()
     {
-        return $this->hasOne('roleModel', 'id', 'role');
+        return $this->hasOne(roleModel::class, 'id', 'role');
     }
 }

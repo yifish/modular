@@ -10,7 +10,7 @@ namespace App\MyTrait;
 
 use App\MyModel\adminModel;
 
-trait adminTrait
+trait AdminTrait
 {
     /*
      * 获取管理员的信息

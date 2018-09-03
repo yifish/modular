@@ -14,8 +14,9 @@ class Role
      * 总权限数组
      * */
     const masterCompetence = array(
-        array('name' => '管理员管理', 'enName' => 'admin', 'competence' => array(
-            'adminList' => '管理员列表'
-        ))
+        'admin' => '管理员管理',
+        'adminList' => '管理员列表',
+        'roleList' => '管理员列表',
+        'competenceList' => '权限列表'
     );
 }
