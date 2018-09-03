@@ -40,7 +40,7 @@ class adminService extends service
     public function menu()
     {
         if ($this->admin->roles['competence'] == '*') {
-            return Menu::master;
+            return $this->getMenu('*', Menu::master);
         }
         return $this->competenceMenu();
     }
@@ -61,12 +61,13 @@ class adminService extends service
     {
         $arr = array();
         foreach ($array as $key => $val) {
-            if (is_array($val)) {
-                $arr[] = array('name' => $val['name'], 'enName' => $key, 'submenu' => $this->getMenu($competence, $val['submenu']));
-            } else {
-                if (strpos($competence,',' . $key . ',',1)) {
+            if (strpos($competence,',' . $key . ',',1) || $competence == '*') {
+                if (is_array($val)) {
+                    $arr[] = array('name' => $val['name'], 'enName' => $key, 'submenu' => $this->getMenu($competence, $val['submenu']));
+                } else {
                     $arr[] = array('name' => $val, 'enName' => $key);
                 }
+
             }
         }
         return $arr;
