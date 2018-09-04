@@ -6,5 +6,7 @@ return [
     'no_password' => '密码错误',
     'null_token' => 'token为空',
     'no_token' => 'token错误',
+    'null_competence' => '权限为空',
+    'no_competence' => '没有权限',
 
 ];

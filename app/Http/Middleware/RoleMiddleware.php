@@ -4,10 +4,11 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\MyTrait\TokenTrait;
+use App\MyTrait\CompetenceTrait;
 
 class RoleMiddleware
 {
-    use TokenTrait;
+    use TokenTrait,CompetenceTrait;
     /**
      * Handle an incoming request.
      *
@@ -20,7 +21,7 @@ class RoleMiddleware
     {
         $this->adminToken($request);
         $admin = $this->getAdmin();
-        dd($admin);
+        $this->checkCompetence($role, $admin->roles['competence']);
         return $next($request);
     }
 }
