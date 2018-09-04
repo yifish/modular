@@ -27,7 +27,7 @@ class Code
     const TOKEN_PAST_DUE = 482;//token过期
     const CAPTCHA_ERROR = 483;//验证码错误
     const CREDIT_CARD_NOT_EXIST = 484;//信用卡不存在
-    const NO_COMPETENCE = 485;//没有权限
+    const NO_COMPETENCE = 485;//权限为空
     const NULL_COMPETENCE = 486;//没有权限
 
 
