@@ -11,7 +11,6 @@ namespace App\MyService;
 use App\MyCommon\Menu;
 use App\MyTrait\AdminTrait;
 use App\MyTrait\CompetenceTrait;
-use App\MyModel\competenceModel;
 
 class adminService extends service
 {
@@ -23,7 +22,16 @@ class adminService extends service
     {
         $this->admin = $this->getAdmin();
     }
-
+    /*
+     * 退出登录
+     * */
+    public function logout()
+    {
+        $this->admin->token = '';
+        $this->admin->save();
+        config('program.ADMINID', null);
+        return $this->makeApiResponse();
+    }
     /*
      * 返回给前端的管理员信息
      * */
