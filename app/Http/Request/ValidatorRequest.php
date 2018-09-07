@@ -10,16 +10,20 @@ namespace App\Http\Request;
 
 class ValidatorRequest
 {
-    public static function login()
+    public static function info($string = 'login')
     {
         return [
-            'loginName' => 'required|string|min:5|max:10',
-            'password' => 'required|string'
-        ];
+            'login' => [
+                'loginName' => 'required|string|min:5|max:10',
+                'password' => 'required|string'
+            ],
+            'list' => [
+            ]
+        ][$string];
     }
 
-    public static function get($functions)
+    public static function get($string)
     {
-        return self::$functions();
+        return self::info($string);
     }
 }

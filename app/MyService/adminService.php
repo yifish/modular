@@ -11,6 +11,7 @@ namespace App\MyService;
 use App\MyCommon\Menu;
 use App\MyTrait\AdminTrait;
 use App\MyTrait\CompetenceTrait;
+use App\MyModel\adminModel;
 
 class adminService extends service
 {
@@ -22,6 +23,16 @@ class adminService extends service
     {
         $this->admin = $this->getAdmin();
     }
+
+    public function getAdminList($request, $where = array())
+    {
+        $adminModel = new adminModel();
+        $this->page = $request->input('page', 0);
+        $this->limit = $request->input('limit', $this->limit);
+        $list = $adminModel->where($where)->offset(($this->page - 1) * $this->limit)->limit($this->limit)->orderBy('created_at', 'desc')->get();
+        return $this->makeApiResponse($this->toArray($list, ['name','loginName','loginTime','created_at']));
+    }
+
     /*
      * 退出登录
      * */

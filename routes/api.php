@@ -17,7 +17,8 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
     $api->group(['namespace' => 'App\Http\Controllers\Admin','prefix'=> 'admin'], function ($api) {
         $api->post('login', 'Login@login');
-        $api->post('login', 'Login@logout')->middleware('adminToken');
+        $api->get('logout', 'Login@logout')->middleware('adminToken');
         $api->get('info', 'Admin@info')->middleware('adminToken');
+        $api->get('adminList', 'Admin@adminList')->middleware('role:adminList');
     });
 });

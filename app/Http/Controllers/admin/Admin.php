@@ -10,6 +10,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\MyService\adminService;
+use Illuminate\Http\Request;
 
 class Admin extends Controller
 {
@@ -25,6 +26,14 @@ class Admin extends Controller
         $adminService = new adminService();
         return $adminService->info();
     }
-
+    /*
+     * 管理员列表
+     * */
+    public function adminList(Request $request)
+    {
+        $this->myValidator('list', $request);
+        $adminService = new adminService();
+        return $adminService->getAdminList($request);
+    }
 
 }

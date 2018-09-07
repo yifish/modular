@@ -21,7 +21,9 @@ class RoleMiddleware
     {
         $this->adminToken($request);
         $admin = $this->getAdmin();
-        $this->checkCompetence($role, $admin->roles['competence']);
+        if ($admin->roles['competence'] != '*') {
+            $this->checkCompetence($role, $admin->roles['competence']);
+        }
         return $next($request);
     }
 }
