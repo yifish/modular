@@ -23,7 +23,9 @@ class service
             'data' => $data
         ]);
     }
-
+    /*
+     * 将model转化成数组
+     * */
     public function toArray($array = [], $field = array())
     {
         $return = array();
@@ -31,9 +33,31 @@ class service
             if (is_array($field)) {
                 $return[$key] = $this->toArray($field, $value);
             } else {
-                $return[$value] = $field[$value];
+                $return = $this->attribute($return, $key, $field, $value);
             }
         }
         return $return;
     }
+    /*
+     * 置换参数类型
+     * */
+    public function attribute($return, $key, $model, $str = '')
+    {
+        switch ($str) {
+            case '':
+                $return[$key] = $model[$key];
+                break;
+            case 'date':
+                $return[$key] = date('Y-m-d H:i:s', $model[$key]);
+                break;
+            case 'created_at':
+                $return[$key] = $model[$key]->format('Y-m-d H:i:s');
+                break;
+            default:
+                $return[$str] = $model[$key];
+                break;
+        }
+        return $return;
+    }
+
 }

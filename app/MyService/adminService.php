@@ -30,7 +30,7 @@ class adminService extends service
         $this->page = $request->input('page', 0);
         $this->limit = $request->input('limit', $this->limit);
         $list = $adminModel->where($where)->offset(($this->page - 1) * $this->limit)->limit($this->limit)->orderBy('created_at', 'desc')->get();
-        return $this->makeApiResponse($this->toArray($list, ['name','loginName','loginTime','created_at']));
+        return $this->makeApiResponse($this->toArray($list, ['id' => 'adminId','name' => '','loginName' => '','loginTime' => 'date','created_at' => 'created_at']));
     }
 
     /*

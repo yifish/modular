@@ -38,6 +38,7 @@ class loginService extends service
         $tokenClass = new Token();
         $token = $tokenClass->encryption();
         $admin->token = $token;
+        $admin->loginTime = time();
         if ($admin->save()) {
             return $this->makeApiResponse(['token' => $token]);
         }
