@@ -23,16 +23,27 @@ class adminService extends service
     {
         $this->admin = $this->getAdmin();
     }
-
+    /*
+     * 管理员列表
+     * */
     public function getAdminList($request, $where = array())
     {
         $adminModel = new adminModel();
         $this->page = $request->input('page', 0);
         $this->limit = $request->input('limit', $this->limit);
-        $list = $adminModel->where($where)->offset(($this->page - 1) * $this->limit)->limit($this->limit)->orderBy('created_at', 'desc')->get();
-        return $this->makeApiResponse($this->toArray($list, ['id' => 'adminId','name' => '','loginName' => '','loginTime' => 'date','created_at' => 'created_at']));
+        $list = $adminModel->where($where)->offset(($this->page - 1) * $this->limit)->orderBy('created_at', 'desc')->paginate($this->limit);
+        return $this->makeApiResponse([
+            'list' => $this->toArray($list->items(), [
+                'id' => 'adminId',
+                'name' => '',
+                'roleName' => '',
+                'loginName' => '',
+                'loginTime' => 'date',
+                'created_at' => 'created_at'
+            ]),
+            'total' => $list->total()
+        ]);
     }
-
     /*
      * 退出登录
      * */
@@ -76,7 +87,7 @@ class adminService extends service
     /*
      * 递归获取左侧菜单
      * */
-    private function getMenu($competence, $array = array())
+    public function getMenu($competence, $array = array())
     {
         $arr = array();
         foreach ($array as $key => $val) {

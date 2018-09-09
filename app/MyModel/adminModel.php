@@ -21,4 +21,9 @@ class adminModel extends Model
     {
         return $this->hasOne(roleModel::class, 'id', 'role');
     }
+
+    public function getRoleNameAttribute()
+    {
+        return $this->roles['name'];
+    }
 }
