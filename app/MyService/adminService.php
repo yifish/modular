@@ -88,13 +88,31 @@ class adminService extends service
      * */
     public function getMenu($competence, $array = array())
     {
-        $arr = array();
+        /*
+         * 按格式返回
+         * */
+        /*$arr = array();
         foreach ($array as $key => $val) {
             if (strpos($competence,',' . $key . ',',1) || $competence == '*') {
                 if (is_array($val)) {
                     $arr[] = array('name' => $val['name'], 'enName' => $key, 'submenu' => $this->getMenu($competence, $val['submenu']));
                 } else {
                     $arr[] = array('name' => $val, 'enName' => $key);
+                }
+            }
+        }
+        return $arr;*/
+        /*
+         * 返回权限名数组
+         * */
+        $arr = array();
+        foreach ($array as $key => $val) {
+            if (strpos($competence,',' . $key . ',',1) || $competence == '*') {
+                if (is_array($val)) {
+                    $arr[] = $key;
+                    $arr = array_merge($arr, $this->getMenu($competence, $val['submenu']));
+                } else {
+                    $arr[] = $key;
                 }
             }
         }
