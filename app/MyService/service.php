@@ -15,7 +15,9 @@ class service
     protected $limit = 10;
 
     protected $page = 1;
-
+    /*
+     * 返回数据
+     * */
     public function makeApiResponse($data = [], $code = Code::SUCCESS, $message = "ok"){
         return Response([
             'code' => $code,
@@ -60,4 +62,9 @@ class service
         return $return;
     }
 
+    public function setPage($request)
+    {
+        $this->page = $request->input('page', $this->page);
+        $this->limit = $request->input('limit', $this->limit);
+    }
 }

@@ -20,5 +20,7 @@ $api->version('v1', function ($api) {
         $api->get('logout', 'Login@logout')->middleware('adminToken');
         $api->get('info', 'Admin@info')->middleware('adminToken');
         $api->get('adminList', 'Admin@adminList')->middleware('role:adminList');
+        $api->get('roleList', 'Role@roleList')->middleware('role:roleList');
+        $api->get('competenceAll', 'Role@competenceAll');
     });
 });

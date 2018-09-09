@@ -29,8 +29,7 @@ class adminService extends service
     public function getAdminList($request, $where = array())
     {
         $adminModel = new adminModel();
-        $this->page = $request->input('page', 0);
-        $this->limit = $request->input('limit', $this->limit);
+        $this->setPage($request);
         $list = $adminModel->where($where)->offset(($this->page - 1) * $this->limit)->orderBy('created_at', 'desc')->paginate($this->limit);
         return $this->makeApiResponse([
             'list' => $this->toArray($list->items(), [
@@ -97,7 +96,6 @@ class adminService extends service
                 } else {
                     $arr[] = array('name' => $val, 'enName' => $key);
                 }
-
             }
         }
         return $arr;
