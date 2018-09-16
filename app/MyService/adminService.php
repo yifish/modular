@@ -9,6 +9,7 @@
 namespace App\MyService;
 
 use App\MyCommon\Menu;
+use App\MyCommon\Role;
 use App\MyTrait\AdminTrait;
 use App\MyTrait\CompetenceTrait;
 use App\MyModel\adminModel;
@@ -78,33 +79,36 @@ class adminService extends service
     {
         return $this->makeApiResponse([
             'name' => $this->admin->name,
-            'menu' => $this->menu()
+            'menu' => $this->competenceMenu(),
+            'competence' => $this->getAdminCompetence()
         ]);
     }
+
     /*
-     * 返回左侧菜单
+     * 获取管理员的权限
      * */
-    public function menu()
+    public function getAdminCompetence()
     {
         if ($this->admin->roles['competence'] == '*') {
-            return $this->getMenu('*', Menu::master);
+            return $this->getMenu('*', Role::masterCompetence, 'competence');
         }
-        return $this->competenceMenu();
+        $comIdStr = trim($this->admin->roles['competence'], ',');
+        $competence = $this->getCompetenceId($comIdStr)->toArray();
+        return array_column($competence, 'competence');
     }
     /*
      * 获取管理员权限的左侧菜单
      * */
     public function competenceMenu()
     {
-        $comIdStr = trim($this->admin->roles['competence'], ',');
-        $competence = $this->getCompetenceId($comIdStr)->toArray();
-        $competence = ',' . implode(',', array_column($competence, 'competence')) . ',';
+        $competence = $this->getAdminCompetence();
+        $competence = ',' . implode(',', $competence) . ',';
         return $this->getMenu($competence, Menu::master);
     }
     /*
      * 递归获取左侧菜单
      * */
-    public function getMenu($competence, $array = array())
+    public function getMenu($competence, $array = array(), $menu = 'submenu')
     {
         /*
          * 按格式返回
@@ -125,10 +129,10 @@ class adminService extends service
          * */
         $arr = array();
         foreach ($array as $key => $val) {
-            if (strpos($competence,',' . $key . ',',1) || $competence == '*') {
+            if (strpos($competence,',' . $key . ',', 0) !== false || $competence == '*') {
                 if (is_array($val)) {
                     $arr[] = $key;
-                    $arr = array_merge($arr, $this->getMenu($competence, $val['submenu']));
+                    $arr = array_merge($arr, $this->getMenu($competence, $val[$menu], $menu));
                 } else {
                     $arr[] = $key;
                 }
