@@ -18,6 +18,11 @@ class ValidatorRequest
                 'password' => 'required|string'
             ],
             'list' => [
+            ],
+            'adminUpdate' => [
+                'adminId' => 'required|number',
+                'name' => 'string|min:5|max:30',
+                'roleId' => 'number'
             ]
         ][$string];
     }

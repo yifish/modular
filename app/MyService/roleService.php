@@ -29,4 +29,18 @@ class roleService extends service
             'total' => $list->total()
         ]);
     }
+    /*
+     * 所有角色
+     * */
+    public function all()
+    {
+        $where = array();
+        $roleModel = new roleModel();
+        $list = $roleModel->where($where)->get();
+        return $this->makeApiResponse($this->toArray($list, [
+            'id' => 'roleId',
+            'name' => '',
+            'created_at' => 'created_at'
+        ]));
+    }
 }

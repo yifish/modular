@@ -12,6 +12,7 @@ use App\MyCommon\Menu;
 use App\MyTrait\AdminTrait;
 use App\MyTrait\CompetenceTrait;
 use App\MyModel\adminModel;
+use App\Code;
 
 class adminService extends service
 {
@@ -35,6 +36,7 @@ class adminService extends service
             'list' => $this->toArray($list->items(), [
                 'id' => 'adminId',
                 'name' => '',
+                'role' => 'roleId',
                 'roleName' => '',
                 'loginName' => '',
                 'loginTime' => 'date',
@@ -43,6 +45,22 @@ class adminService extends service
             'total' => $list->total()
         ]);
     }
+
+    /*
+     * 管理员修改
+     * */
+    public function update($request){
+        $admin = $this->getAdmin($request->adminId);
+        if (empty($admin)) {
+            $this->makeApiResponse([], Code::NOT_EXIST, trans('admin.no_admin'));
+        }
+        $admin = $this->setAttribute($admin, $request, ['name' => 'name', 'role' => 'roleId']);
+        if ($admin->save()) {
+            $this->makeApiResponse([]);
+        }
+        $this->makeApiResponse([], Code::OPERATE_ERROR, trans('admin.error_update'));
+    }
+
     /*
      * 退出登录
      * */

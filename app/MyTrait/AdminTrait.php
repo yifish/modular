@@ -15,9 +15,11 @@ trait AdminTrait
     /*
      * 获取管理员的信息
      * */
-    public function getAdmin()
+    public function getAdmin($adminId = 0)
     {
-        $adminId = config('program.ADMINID');
+        if ($adminId <= 0) {
+            $adminId = config('program.ADMINID');
+        }
         return adminModel::where(['id' => $adminId])->first();
     }
 }

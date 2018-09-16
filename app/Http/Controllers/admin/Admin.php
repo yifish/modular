@@ -35,5 +35,14 @@ class Admin extends Controller
         $adminService = new adminService();
         return $adminService->getAdminList($request);
     }
+    /*
+     * 修改管理员
+     * */
+    public function adminUpdate(Request $request)
+    {
+        $this->myValidator('adminUpdate', $request);
+        $adminService = new adminService();
+        return $adminService->update($request);
+    }
 
 }

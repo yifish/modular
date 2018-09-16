@@ -8,6 +8,7 @@
 
 namespace App\MyService;
 
+use App\Exceptions\SuccessException;
 use App\Code;
 
 class service
@@ -62,9 +63,29 @@ class service
         return $return;
     }
 
+    /*
+     * 设置分页
+     * */
     public function setPage($request)
     {
         $this->page = $request->input('page', $this->page);
         $this->limit = $request->input('limit', $this->limit);
+    }
+
+    /*
+     * 属性赋值
+     * $model model类
+     * $obj 值所在的对象
+     * */
+    public function setAttribute($model, $obj, $array = array())
+    {
+        try {
+            foreach ($array as $key => $value) {
+                $model->$key = $obj->$value;
+            }
+        } catch (\Exception $e) {
+            throw new SuccessException(Code::NO_COMPETENCE, trans('login.no_competence'));
+        }
+        return $model;
     }
 }

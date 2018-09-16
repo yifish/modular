@@ -32,5 +32,13 @@ class Role extends Controller
         $competenceService = new competenceService();
         return $competenceService->All();
     }
+    /*
+     * 获取所有角色
+     * */
+    public function roleAll()
+    {
+        $roleService = new roleService();
+        return $roleService->all();
+    }
 
 }
