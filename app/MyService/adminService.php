@@ -52,13 +52,13 @@ class adminService extends service
     public function update($request){
         $admin = $this->getAdmin($request->adminId);
         if (empty($admin)) {
-            $this->makeApiResponse([], Code::NOT_EXIST, trans('admin.no_admin'));
+            return $this->makeApiResponse([], Code::NOT_EXIST, trans('admin.no_admin'));
         }
         $admin = $this->setAttribute($admin, $request, ['name' => 'name', 'role' => 'roleId']);
         if ($admin->save()) {
-            $this->makeApiResponse([]);
+            return $this->makeApiResponse([]);
         }
-        $this->makeApiResponse([], Code::OPERATE_ERROR, trans('admin.error_update'));
+        return $this->makeApiResponse([], Code::OPERATE_ERROR, trans('admin.error_update'));
     }
 
     /*

@@ -31,6 +31,6 @@ $api->version('v1', function ($api) {
         // 获取所有角色
         $api->get('roleAll', 'Role@roleAll')->middleware('adminToken');
         // 修改管理员
-        $api->get('adminUpdate', 'Admin@adminUpdate')->middleware('role:adminUpdate');
+        $api->post('adminUpdate', 'Admin@adminUpdate')->middleware('role:adminUpdate');
     });
 });

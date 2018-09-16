@@ -20,9 +20,9 @@ class ValidatorRequest
             'list' => [
             ],
             'adminUpdate' => [
-                'adminId' => 'required|number',
+                'adminId' => 'required|numeric',
                 'name' => 'string|min:5|max:30',
-                'roleId' => 'number'
+                'roleId' => 'numeric'
             ]
         ][$string];
     }
