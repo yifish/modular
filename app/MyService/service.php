@@ -84,7 +84,7 @@ class service
                 $model->$key = $obj->$value;
             }
         } catch (\Exception $e) {
-            throw new SuccessException(Code::NO_COMPETENCE, trans('login.no_competence'));
+            throw new SuccessException(Code::PARAMETER_ERROR, trans('admin.error_type'));
         }
         return $model;
     }

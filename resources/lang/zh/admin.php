@@ -14,5 +14,6 @@ return [
     */
     'no_admin' => '管理员不存在',
     'error_update' => '修改失败',
+    'error_type' => '类型错误',
 
 ];
