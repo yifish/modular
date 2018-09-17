@@ -8,23 +8,24 @@
 
 namespace App\Http\Request;
 
+use App\MyCommon\Validate;
+
 class ValidatorRequest
 {
     public static function info($string = 'login')
     {
-        return [
-            'login' => [
-                'loginName' => 'required|string|min:5|max:10',
-                'password' => 'required|string'
-            ],
-            'list' => [
-            ],
-            'adminUpdate' => [
-                'adminId' => 'required|numeric',
-                'name' => 'string|min:5|max:30',
-                'roleId' => 'numeric'
-            ]
-        ][$string];
+        $validate = Validate::masterValidate;
+        if (is_string($string)) {
+            return $validate[$string];
+        }
+        if (is_array($string)) {
+            $return = array();
+            foreach ($string as $value) {
+                $return = array_merge($return, $validate[$value]);
+            }
+            return $return;
+        }
+        return [];
     }
 
     public static function get($string)

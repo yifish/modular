@@ -14,6 +14,7 @@ use App\MyTrait\AdminTrait;
 use App\MyTrait\CompetenceTrait;
 use App\MyModel\adminModel;
 use App\Code;
+use App\MyCommon\Cipher;
 
 class adminService extends service
 {
@@ -46,7 +47,25 @@ class adminService extends service
             'total' => $list->total()
         ]);
     }
-
+    /*
+     * 添加管理员
+     * */
+    public function create($request)
+    {
+        $admin = new adminModel();
+        $cipher = new Cipher($request->password);
+        $admin = $this->setAttribute($admin, $request, [
+            'loginName' => 'loginName',
+            'name' => 'name',
+            'role' => 'roleId'
+        ]);
+        $admin->random = $cipher->getString();
+        $admin->password = $cipher->encryption();
+        if ($admin->save()) {
+            return $this->makeApiResponse([]);
+        }
+        return $this->makeApiResponse([], Code::OPERATE_ERROR, trans('admin.error_create'));
+    }
     /*
      * 管理员修改
      * */

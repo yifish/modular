@@ -17,6 +17,7 @@ class Role
         'admin' => array('name' => '管理员管理', 'competence' => array(
             'adminList' => '管理员列表',
             'adminUpdate' => '修改管理员',
+            'adminCreate' => '添加管理员',
             'roleList' => '角色列表'
         ))
     );

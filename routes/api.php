@@ -32,5 +32,7 @@ $api->version('v1', function ($api) {
         $api->get('roleAll', 'Role@roleAll')->middleware('adminToken');
         // 修改管理员
         $api->post('adminUpdate', 'Admin@adminUpdate')->middleware('role:adminUpdate');
+        // 添加管理员
+        $api->post('adminCreate', 'Admin@adminCreate')->middleware('role:adminCreate');
     });
 });
