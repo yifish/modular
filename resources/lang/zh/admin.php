@@ -13,6 +13,7 @@ return [
     |
     */
     'no_admin' => '管理员不存在',
+    'no_delete_admin' => '该管理员不可删除',
     'error_update' => '修改失败',
     'error_type' => '类型错误',
     'error_create' => '添加失败',

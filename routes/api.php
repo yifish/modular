@@ -34,5 +34,7 @@ $api->version('v1', function ($api) {
         $api->post('adminUpdate', 'Admin@adminUpdate')->middleware('role:adminUpdate');
         // 添加管理员
         $api->post('adminCreate', 'Admin@adminCreate')->middleware('role:adminCreate');
+        // 删除管理员
+        $api->post('adminDelete', 'Admin@adminDelete')->middleware('role:adminDelete');
     });
 });

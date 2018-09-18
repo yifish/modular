@@ -80,6 +80,21 @@ class adminService extends service
         }
         return $this->makeApiResponse([], Code::OPERATE_ERROR, trans('admin.error_update'));
     }
+    /*
+     * 删除管理员
+     * */
+    public function delete($request)
+    {
+        $admin = $this->getAdmin($request->adminId);
+        if (empty($admin)) {
+            return $this->makeApiResponse([], Code::NOT_EXIST, trans('admin.no_admin'));
+        }
+        if ($admin->id == 1) {
+            return $this->makeApiResponse([], Code::NOT_EXIST, trans('admin.no_delete_admin'));
+        }
+        $admin->forceDelete();
+        return $this->makeApiResponse([]);
+    }
 
     /*
      * 退出登录

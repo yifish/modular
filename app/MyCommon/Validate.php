@@ -26,6 +26,9 @@ class Validate
         'adminCreate' => array(
             'name' => 'required|unique:admin|min:5|max:30',
             'roleId' => 'required|numeric'
+        ),
+        'adminDelete' => array(
+            'adminId' => 'required'
         )
     );
 }

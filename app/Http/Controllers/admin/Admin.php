@@ -53,5 +53,14 @@ class Admin extends Controller
         $adminService = new adminService();
         return $adminService->update($request);
     }
+    /*
+     * 删除管理员
+     * */
+    public function adminDelete(Request $request)
+    {
+        $this->myValidator('adminDelete', $request);
+        $adminService = new adminService();
+        return $adminService->delete($request);
+    }
 
 }

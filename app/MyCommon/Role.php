@@ -18,6 +18,7 @@ class Role
             'adminList' => '管理员列表',
             'adminUpdate' => '修改管理员',
             'adminCreate' => '添加管理员',
+            'adminDelete' => '删除管理员',
             'roleList' => '角色列表'
         ))
     );
