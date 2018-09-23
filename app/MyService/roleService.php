@@ -9,9 +9,12 @@
 namespace App\MyService;
 
 use App\MyModel\roleModel;
+use App\MyTrait\CompetenceTrait;
+use App\Code;
 
 class roleService extends service
 {
+    use CompetenceTrait;
     /*
      * 管理员列表
      * */
@@ -43,5 +46,22 @@ class roleService extends service
             'competence' => '',
             'created_at' => 'created_at'
         ]));
+    }
+    /*
+     * 添加角色
+     * */
+    public function create($request)
+    {
+        $roleModel = new roleModel();
+        $competenceId = $this->getCompetenceList($request->competence, 'competence', 'id');
+        if (count($competenceId) <= 0) {
+            return $this->makeApiResponse([], Code::NULL_COMPETENCE, trans('admin.no_competence'));
+        }
+        $roleModel->name = $request->name;
+        $roleModel->competence = ',' . explode(',', $competenceId->toArray()) . ',';
+        if ($roleModel->save()) {
+            return $this->makeApiResponse([]);
+        }
+        return $this->makeApiResponse([], Code::OPERATE_ERROR, trans('admin.error_create'));
     }
 }

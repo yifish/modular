@@ -17,5 +17,6 @@ return [
     'error_update' => '修改失败',
     'error_type' => '类型错误',
     'error_create' => '添加失败',
+    'no_competence' => '没有权限',
 
 ];

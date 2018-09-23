@@ -20,7 +20,7 @@ class Role
             'adminCreate' => '添加管理员',
             'adminDelete' => '删除管理员',
             'roleList' => '角色列表',
-            'roleCreate' => '修改角色'
+            'roleCreate' => '添加角色'
         ))
     );
 }

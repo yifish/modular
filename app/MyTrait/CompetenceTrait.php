@@ -17,7 +17,7 @@ trait CompetenceTrait
     /*
      * 获取权限列表
      * */
-    public function getCompetenceId($fieldValue, $field = 'id', $select = 'competence')
+    public function getCompetenceList($fieldValue, $field = 'id', $select = 'competence')
     {
         return competenceModel::whereIn($field, explode(',', $fieldValue))->select($select)->get();
     }

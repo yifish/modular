@@ -33,6 +33,10 @@ class Validate
         ),
         'adminDelete' => array(
             'adminId' => 'required'
+        ),
+        'roleCreate' => array(
+            'name' => 'required|string|unique:role|min:5|max:30',
+            'competence' => 'required|string|min:1|max:1000'
         )
     );
 }

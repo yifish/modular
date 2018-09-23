@@ -127,7 +127,7 @@ class adminService extends service
             return $this->getMenu('*', Role::masterCompetence, 'competence');
         }
         $comIdStr = trim($this->admin->roles['competence'], ',');
-        $competence = $this->getCompetenceId($comIdStr)->toArray();
+        $competence = $this->getCompetenceList($comIdStr)->toArray();
         return array_column($competence, 'competence');
     }
     /*

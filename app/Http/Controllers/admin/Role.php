@@ -40,5 +40,14 @@ class Role extends Controller
         $roleService = new roleService();
         return $roleService->all();
     }
+    /*
+     * 添加角色
+     * */
+    public function roleCreate(Request $request)
+    {
+        $this->myValidator('roleCreate', $request);
+        $roleService = new roleService();
+        return $roleService->create($request);
+    }
 
 }
