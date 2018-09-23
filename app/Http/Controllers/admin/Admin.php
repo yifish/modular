@@ -40,7 +40,7 @@ class Admin extends Controller
      * */
     public function adminCreate(Request $request)
     {
-        $this->myValidator(['login', 'adminCreate'], $request);
+        $this->myValidator(['register', 'adminCreate'], $request);
         $adminService = new adminService();
         return $adminService->create($request);
     }

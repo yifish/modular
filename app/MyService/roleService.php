@@ -40,6 +40,7 @@ class roleService extends service
         return $this->makeApiResponse($this->toArray($list, [
             'id' => 'roleId',
             'name' => '',
+            'competence' => '',
             'created_at' => 'created_at'
         ]));
     }

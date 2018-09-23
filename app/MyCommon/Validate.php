@@ -13,6 +13,10 @@ class Validate
 {
     const masterValidate = array(
         'login' => array(
+            'loginName' => 'required|string|min:5|max:10',
+            'password' => 'required|string'
+        ),
+        'register' => array(
             'loginName' => 'required|unique:admin|string|min:5|max:10',
             'password' => 'required|string'
         ),
