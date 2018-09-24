@@ -74,6 +74,11 @@ class adminService extends service
         if (empty($admin)) {
             return $this->makeApiResponse([], Code::NOT_EXIST, trans('admin.no_admin'));
         }
+        // 修改密码
+        if (!empty($request->password)) {
+            $cipher = new Cipher($request->password, $admin->random);
+            $admin->password = $cipher->encryption();
+        }
         $admin = $this->setAttribute($admin, $request, ['name' => 'name', 'role' => 'roleId']);
         if ($admin->save()) {
             return $this->makeApiResponse([]);

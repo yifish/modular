@@ -16,7 +16,7 @@ class Admin extends Migration
         //后台管理员表
         Schema::create('admin', function (Blueprint $table) {
             $table->increments('id')->comment('后台管理表');
-            $table->string('name', 50)->unique()->comment('管理员名称');
+            $table->string('name', 50)->comment('管理员名称');
             $table->string('loginName', 20)->unique()->comment('登陆账号');
             $table->string('password', 250)->comment('密码');
             $table->string('random', 6)->comment('随机码');
