@@ -24,7 +24,7 @@ class Role extends Migration
         Schema::create('role', function (Blueprint $table) {
             $table->increments('id')->comment('后台角色表');
             $table->string('name', 50)->default('')->comment('角色名称');
-            $table->string('competence', 500)->default('')->unique()->comment('权限集合');
+            $table->string('competence', 500)->default('')->comment('权限集合');
             $table->timestamps();
         });
     }

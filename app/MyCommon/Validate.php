@@ -35,7 +35,7 @@ class Validate
             'adminId' => 'required'
         ),
         'roleCreate' => array(
-            'name' => 'required|string|unique:role|min:2|max:30',
+            'name' => 'required|string|min:2|max:30',
             'competence' => 'required|string|min:1|max:1000'
         ),
         'roleId' => array(
