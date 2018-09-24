@@ -21,7 +21,8 @@ class Role
             'adminDelete' => '删除管理员',
             'roleList' => '角色列表',
             'roleCreate' => '添加角色',
-            'roleUpdate' => '修改角色'
+            'roleUpdate' => '修改角色',
+            'roleDelete' => '删除角色'
         ))
     );
 }

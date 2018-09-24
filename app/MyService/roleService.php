@@ -85,4 +85,19 @@ class roleService extends service
         }
         return $this->makeApiResponse([], Code::OPERATE_ERROR, trans('admin.error_update'));
     }
+    /*
+     * 删除角色
+     * */
+    public function delete($request)
+    {
+        $role = roleModel::where('id', $request->roleId)->first();
+        if (empty($role)) {
+            return $this->makeApiResponse([], Code::NOT_EXIST_INFO, trans('admin.no_role'));
+        }
+        if ($role->id == 1) {
+            return $this->makeApiResponse([], Code::NOT_EXIST, trans('admin.no_delete_role'));
+        }
+        $role->forceDelete();
+        return $this->makeApiResponse([]);
+    }
 }

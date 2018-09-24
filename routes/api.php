@@ -40,5 +40,7 @@ $api->version('v1', function ($api) {
         $api->post('roleCreate', 'Role@roleCreate')->middleware('role:roleCreate');
         // 修改角色
         $api->post('roleUpdate', 'Role@roleUpdate')->middleware('role:roleUpdate');
+        // 删除角色
+        $api->post('roleDelete', 'Role@roleDelete')->middleware('role:roleDelete');
     });
 });

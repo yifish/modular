@@ -58,5 +58,13 @@ class Role extends Controller
         $roleService = new roleService();
         return $roleService->update($request);
     }
-
+    /*
+     * 删除角色
+     **/
+    public function roleDelete(Request $request)
+    {
+        $this->myValidator('roleId', $request);
+        $roleService = new roleService();
+        return $roleService->delete($request);
+    }
 }

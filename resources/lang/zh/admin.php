@@ -19,5 +19,6 @@ return [
     'error_create' => '添加失败',
     'no_competence' => '没有权限',
     'no_role' => '没有该角色',
+    'no_delete_role' => '该角色不可删除',
 
 ];
