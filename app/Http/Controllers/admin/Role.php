@@ -49,5 +49,14 @@ class Role extends Controller
         $roleService = new roleService();
         return $roleService->create($request);
     }
+    /*
+     * 修改角色
+     * */
+    public function roleUpdate(Request $request)
+    {
+        $this->myValidator(['roleId', 'roleCreate'], $request);
+        $roleService = new roleService();
+        return $roleService->update($request);
+    }
 
 }

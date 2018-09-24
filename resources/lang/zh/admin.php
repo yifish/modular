@@ -18,5 +18,6 @@ return [
     'error_type' => '类型错误',
     'error_create' => '添加失败',
     'no_competence' => '没有权限',
+    'no_role' => '没有该角色',
 
 ];

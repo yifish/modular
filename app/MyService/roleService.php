@@ -27,6 +27,7 @@ class roleService extends service
             'list' => $this->toArray($list->items(), [
                 'id' => 'roleId',
                 'name' => '',
+                'competenceEnName' => 'competence',
                 'created_at' => 'created_at'
             ]),
             'total' => $list->total()
@@ -58,10 +59,30 @@ class roleService extends service
             return $this->makeApiResponse([], Code::NULL_COMPETENCE, trans('admin.no_competence'));
         }
         $roleModel->name = $request->name;
-        $roleModel->competence = ',' . explode(',', $competenceId->toArray()) . ',';
+        $roleModel->competence = ',' . implode(',', array_column($competenceId->toArray(), 'id')) . ',';
         if ($roleModel->save()) {
             return $this->makeApiResponse([]);
         }
         return $this->makeApiResponse([], Code::OPERATE_ERROR, trans('admin.error_create'));
+    }
+    /*
+     * 修改角色
+     * */
+    public function update($request)
+    {
+        $roleModel = roleModel::where('id', $request->roleId)->first();
+        if (empty($roleModel)) {
+            return $this->makeApiResponse([], Code::NOT_EXIST_INFO, trans('admin.no_role'));
+        }
+        $competenceId = $this->getCompetenceList($request->competence, 'competence', 'id');
+        if (count($competenceId) <= 0) {
+            return $this->makeApiResponse([], Code::NULL_COMPETENCE, trans('admin.no_competence'));
+        }
+        $roleModel->name = $request->name;
+        $roleModel->competence = ',' . implode(',', array_column($competenceId->toArray(), 'id')) . ',';
+        if ($roleModel->save()) {
+            return $this->makeApiResponse([]);
+        }
+        return $this->makeApiResponse([], Code::OPERATE_ERROR, trans('admin.error_update'));
     }
 }

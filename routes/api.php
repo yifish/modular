@@ -38,5 +38,7 @@ $api->version('v1', function ($api) {
         $api->post('adminDelete', 'Admin@adminDelete')->middleware('role:adminDelete');
         // 添加角色
         $api->post('roleCreate', 'Role@roleCreate')->middleware('role:roleCreate');
+        // 修改角色
+        $api->post('roleUpdate', 'Role@roleUpdate')->middleware('role:roleUpdate');
     });
 });
