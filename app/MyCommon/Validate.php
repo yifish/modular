@@ -41,6 +41,13 @@ class Validate
         ),
         'roleId' => array(
             'roleId' => 'required|numeric'
+        ),
+        'userId' => array(
+            'userId' => 'required|numeric'
+        ),
+        'userCreate' => array(
+            'phone' => 'string|min:8|max:20',
+            'name' => 'string|min:2|max:30'
         )
     );
 }

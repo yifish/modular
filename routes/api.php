@@ -45,6 +45,8 @@ $api->version('v1', function ($api) {
     });
     $api->group(['namespace' => 'App\Http\Controllers\User','prefix'=> 'admin'], function ($api) {
         // 用户列表
-        $api->post('userList', 'User@userList')->middleware('role:userList');
+        $api->get('userList', 'User@userList')->middleware('role:userList');
+        // 添加用户
+        $api->get('userCreate', 'User@userCreate')->middleware('role:userCreate');
     });
 });

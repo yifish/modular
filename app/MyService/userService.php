@@ -34,4 +34,23 @@ class userService extends service
             'total' => $list->total()
         ]);
     }
+    /*
+     * 添加用户
+     * */
+    public function create($request)
+    {
+        $user = new userModel();
+        $cipher = new Cipher($request->password);
+        $user = $this->setAttribute($user, $request, [
+            'loginName' => 'loginName',
+            'name' => 'name',
+            'phone' => 'phone'
+        ]);
+        $user->random = $cipher->getString();
+        $user->password = $cipher->encryption();
+        if ($user->save()) {
+            return $this->makeApiResponse([]);
+        }
+        return $this->makeApiResponse([], Code::OPERATE_ERROR, trans('admin.error_create'));
+    }
 }

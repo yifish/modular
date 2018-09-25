@@ -16,7 +16,8 @@ class Menu
     const master = array(
         'admin' => array('name' => '管理员管理', 'submenu'=>array(
             'adminList' => '管理员列表',
-            'roleList' => '角色列表'
+            'roleList' => '角色列表',
+            'userList' => '用户列表'
         ))
     );
 }

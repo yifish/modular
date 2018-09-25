@@ -27,4 +27,10 @@ class User extends Controller
         $userService = new userService();
         return $userService->getUserList($request);
     }
+    public function userCreate(Request $request)
+    {
+        $this->myValidator(['userCreate', 'register'], $request);
+        $userService = new userService();
+        return $userService->create($request);
+    }
 }
