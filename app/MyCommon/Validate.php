@@ -24,12 +24,12 @@ class Validate
         ),
         'adminUpdate' => array(
             'adminId' => 'required|numeric',
-            'name' => 'string|min:5|max:30',
+            'name' => 'string|min:2|max:30',
             'password' => 'string|min:6|max:64',
             'roleId' => 'numeric'
         ),
         'adminCreate' => array(
-            'name' => 'required|unique:admin|min:5|max:30',
+            'name' => 'required|unique:admin|min:2|max:30',
             'roleId' => 'required|numeric'
         ),
         'adminDelete' => array(
