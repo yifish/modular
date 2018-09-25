@@ -37,5 +37,7 @@ class Role extends Migration
     public function down()
     {
         //
+        Schema::drop('competence');
+        Schema::drop('role');
     }
 }
