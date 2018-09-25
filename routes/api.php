@@ -43,7 +43,8 @@ $api->version('v1', function ($api) {
         // 删除角色
         $api->post('roleDelete', 'Role@roleDelete')->middleware('role:roleDelete');
     });
-    $api->group(['namespace' => 'App\Http\Controllers\Admin','prefix'=> 'admin'], function ($api) {
-        $api->post('roleDelete', 'Role@roleDelete')->middleware('role:roleDelete');
+    $api->group(['namespace' => 'App\Http\Controllers\User','prefix'=> 'admin'], function ($api) {
+        // 用户列表
+        $api->post('userList', 'User@userList')->middleware('role:userList');
     });
 });
