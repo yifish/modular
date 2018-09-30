@@ -19,7 +19,9 @@ class Controller extends BaseController
     public function __construct()
     {
     }
-
+    /*
+     * 接口表单验证
+     * */
     public function myValidator($functions = 'login', Request $request)
     {
         try {

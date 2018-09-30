@@ -8,6 +8,8 @@
 
 namespace App\Http\Controllers\AdminWeb;
 
+use Illuminate\Http\Request;
+
 class Login extends AdminWebController
 {
     /*
@@ -16,5 +18,13 @@ class Login extends AdminWebController
     public function login()
     {
         return view('admin.login');
+    }
+    /*
+     * 登录方法
+     * */
+    public function loginPost(Request $request)
+    {
+        $this->myValidator('login', $request);
+
     }
 }

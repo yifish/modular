@@ -13,4 +13,5 @@
 
 Route::group(['namespace' => 'AdminWeb'],function () {
     Route::get('login', 'Login@login');
+    Route::post('/login/loginPost','Login@loginPost');
 });
