@@ -16,8 +16,6 @@ use App\Code;
 
 class loginService extends service
 {
-    private $cipher;
-
     public function __construct()
     {
     }

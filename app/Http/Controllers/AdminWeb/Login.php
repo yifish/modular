@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\AdminWeb;
 
 use Illuminate\Http\Request;
+use Redis;
 
 class Login extends AdminWebController
 {
