@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use App\MyModel\adminModel;
 use App\MyCommon\Cipher;
 use App\MyCommon\Token;
-use Illuminate\Support\Facades\Auth;
 
 class adminService extends service
 {
@@ -59,17 +58,10 @@ class adminService extends service
         return $this->admin;
     }
     /*
-     * Auth::guard
+     * attempt
      * */
-    public function guard()
+    public function storeAdmin()
     {
-        return Auth::guard('admin');
-    }
-    /*
-     * Auth::guard attempt
-     * */
-    public function attempt()
-    {
-        $this->guard()->attempt($this->admin);
+        session(['admin' => $this->admin]);
     }
 }
