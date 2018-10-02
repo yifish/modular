@@ -35,11 +35,21 @@
         <div class="am-u-sm-10 login-am-center">
             <form class="am-form" method="post" action="{{url('admin/login/loginPost')}}">
                 <fieldset>
+                    @csrf
+                    @if($errors->has('message'))
+                        <small style="color:red;">{{$errors->first('message')}}</small>
+                    @endif
+                    @if($errors->has('loginName'))
+                        <small style="color:red;">{{$errors->first('loginName')}}</small>
+                    @endif
                     <div class="am-form-group">
-                        <input type="text" name="loginName" class="" placeholder="输入登录账号">
+                        <input type="text" value="{{old('loginName')}}" name="loginName" class="" placeholder="输入登录账号">
                     </div>
+                    @if($errors->has('password'))
+                        <small style="color:red;">{{$errors->first('password')}}</small>
+                    @endif
                     <div class="am-form-group">
-                        <input type="password" name="password" class="" placeholder="设置个密码吧">
+                        <input type="password" value="{{old('password')}}" name="password" class="" placeholder="设置个密码吧">
                     </div>
                     <p><button type="submit" class="am-btn am-btn-default">登录</button></p>
                 </fieldset>

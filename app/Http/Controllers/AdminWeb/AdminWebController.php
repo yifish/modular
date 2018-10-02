@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Request\ValidatorRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Exceptions\AdminWebException;
 
 class AdminWebController extends BaseController
 {
@@ -22,18 +23,33 @@ class AdminWebController extends BaseController
      * */
     public function myValidator($functions = 'login', Request $request)
     {
-        /*try {
+        try {
             $validator = Validator::make($request->all(), ValidatorRequest::get($functions));
         } catch (\Exception $e) {
-            echo 404;exit;
-            return back()->withErrors(['服务器访问错误！']);
+            abort(404);
+//            return response('404');
         }
         $message = $validator->errors();
         if ($message->first()){
             // back()->withErrors([$message->first()]);
-            echo $message->first();exit;
-        }*/
+            // echo $message->first();exit;
+//            abort(422, $message->first());
+            throw new AdminWebException($message);
+        }
+        /*
         $validator = Validator::make($request->all(), ValidatorRequest::get($functions));
         $validator->validate();
+        */
     }
+    /*
+     * 返回上一页并提示错误
+     * */
+    public function MyBackErrors($message, $input = false)
+    {
+        if ($input) {
+            return back()->withErrors(['message' => $message])->withInput();
+        }
+        return back()->withErrors(['message' => $message]);
+    }
+
 }

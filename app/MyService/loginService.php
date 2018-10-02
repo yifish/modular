@@ -40,7 +40,7 @@ class loginService extends service
         if ($admin->save()) {
             return $this->makeApiResponse(['token' => $token]);
         }
-        return $this->makeApiResponse([], Code::USER_PASSWORD_ERROR, trans('login.no_password'));
+        return $this->makeApiResponse([], Code::USER_PASSWORD_ERROR, trans('login.error'));
     }
 
 

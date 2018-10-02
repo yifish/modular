@@ -8,5 +8,6 @@ return [
     'no_token' => 'token错误',
     'null_competence' => '权限为空',
     'no_competence' => '没有权限',
+    'error' => '登录失败',
 
 ];

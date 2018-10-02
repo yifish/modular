@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\AdminWeb;
 
 use Illuminate\Http\Request;
-use Redis;
+use App\Service\AdminService\adminService;
 
 class Login extends AdminWebController
 {
@@ -26,6 +26,19 @@ class Login extends AdminWebController
     public function loginPost(Request $request)
     {
         $this->myValidator('login', $request);
-
+        $adminService = new adminService();
+        if (empty($adminService->isLoginName($request))) {
+            return $this->MyBackErrors(trans('login.no_admin_account'));
+        }
+        if (!$adminService->checkPassword($request->password)) {
+            return $this->MyBackErrors(trans('login.no_password'));
+        }
+        $adminService->setToken();
+        $admin = $adminService->getAdmin();
+        if (!$admin->save()) {
+            return $this->MyBackErrors(trans('login.error'));
+        }
+        $adminService->attempt();
+        return redirect('admin/home');
     }
 }
