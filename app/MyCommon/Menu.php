@@ -20,4 +20,10 @@ class Menu
             'userList' => '用户列表'
         ))
     );
+
+    const masterUrl = array(
+        'adminList' => 'admin/adminList',
+        'roleList' => 'admin/roleList',
+        'userList' => 'admin/userList',
+    );
 }

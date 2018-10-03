@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/amazeui.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/fonts/fontawesome-webfont.woff2?v=4.6.3')}}">
     @yield('style')
 </head>
 
@@ -132,7 +131,7 @@
 
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img src="{{asset('back/img/user01.png')}}"></span>
+                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img src="{{asset('assets/img/user01.png')}}"></span>
                 </a>
                 <ul class="am-dropdown-content">
                     <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>
@@ -160,6 +159,7 @@
         </div>
         <div class="tpl-left-nav-list">
             <ul class="tpl-left-nav-menu">
+
             </ul>
         </div>
     </div>
