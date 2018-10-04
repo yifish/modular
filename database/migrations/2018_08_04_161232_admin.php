@@ -19,6 +19,7 @@ class Admin extends Migration
             $table->string('name', 50)->comment('管理员名称');
             $table->string('loginName', 20)->unique()->comment('登陆账号');
             $table->string('password', 250)->comment('密码');
+            $table->string('images', 300)->default('')->nullable()->comment('图片地址');
             $table->string('random', 6)->comment('随机码');
             $table->string('token', 64)->nullable()->comment('验证码');
             $table->string('loginTime',13)->default(0)->comment('最后一次登陆时间');
