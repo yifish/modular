@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+@inject('menu', 'App\WebMenu\MenuPower')
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -159,7 +160,7 @@
         </div>
         <div class="tpl-left-nav-list">
             <ul class="tpl-left-nav-menu">
-
+                {!! $menu !!}
             </ul>
         </div>
     </div>

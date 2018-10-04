@@ -18,11 +18,19 @@ class MenuPower
 
     private $menuUrl = array(); // 菜单路径地址
 
+    private $menuIconClass = array(); // 菜单图标样式
+
     public function __construct()
     {
         $this->menu = Menu::master;
 
         $this->menuUrl = Menu::masterUrl;
+
+        $this->menuIconClass = Menu::masterIconClass;
+
+        $this->checkCompetence();
+
+        $this->install();
     }
 
     public function render()
@@ -35,6 +43,93 @@ class MenuPower
         // TODO: Implement __toString() method.
         return $this->render();
     }
+    /*
+     * 判断权限
+     * */
+    public function checkCompetence()
+    {
+        $admin = $this->getAdmin();
+        if ($admin->roles->competence == '*') {
+            return true;
+        }
+        return false;
+    }
+    /*
+     * 菜单初始化
+     * */
+    public function install()
+    {
+        $html = '';
+        foreach ($this->menu as $key => $value) {
+            $childHtml = '';
+            if (is_array($value)) {
+                $childHtml = $this->setChildHtml($value['submenu']);
+            }
+            $html .= $this->setMenuHtml($value['name'], $key, $childHtml);
+        }
+        return $this->menuHtml = $html;
+    }
 
-
+    /*
+     * 是否设置参数
+     * */
+    public function is_set(String $string, String $default = '')
+    {
+        return isset($string) ? $string : $default;
+    }
+    /*
+     * 是否设置参数
+     * */
+    public function issetMenuUrl(String $string, String $default = '')
+    {
+        return isset($this->menuUrl[$string]) ? '/'.$this->menuUrl[$string] : $default;
+    }
+    /*
+    * 是否设置参数
+    * */
+    public function issetMenuIconClass(String $string, String $default = '')
+    {
+        return isset($this->menuIconClass[$string]) ? $this->menuIconClass[$string] : $default;
+    }
+    /*
+     * 生成子菜单的html
+     * */
+    public function setChildHtml($submenu = array())
+    {
+        $html = '<ul class="tpl-left-nav-sub-menu">';
+        foreach ($submenu as $key => $value) {
+            $html .= '<li>';
+            $html .= '<a href="' . $this->issetMenuUrl($key, 'javascript:;') . '">';
+            $html .= '<i class="'. $this->issetMenuIconClass($key) .'"></i>';
+            $html .= '<span>'. $value .'</span>';
+            $html .= '<i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>';
+            $html .= '</a>';
+            $html .= '</li>';
+        }
+        $html .= '</ul>';
+        return $html;
+    }
+    /*
+     * 生成菜单html
+     * */
+    public function setMenuHtml($name, $enName, $childHtml = '')
+    {
+        $html = '';
+        $html .= '<li class="tpl-left-nav-item">';
+        $html .= '<a href="'. $this->issetMenuUrl($enName, 'javascript:;') .'" class="nav-link tpl-left-nav-link-list">';
+        $html .= '<i class="'. $this->issetMenuIconClass($enName) .'"></i>';
+        $html .= '<span>'. $name .'</span>';
+        $html .= '<i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>';
+        $html .= '</a>';
+        $html .= $childHtml;
+        $html .= '</li>';
+        return $html;
+    }
+    /*
+     * 返回管理员信息
+     * */
+    public function getAdmin()
+    {
+        return session('admin');
+    }
 }

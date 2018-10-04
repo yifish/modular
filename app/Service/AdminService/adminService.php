@@ -58,6 +58,13 @@ class adminService extends service
         return $this->admin;
     }
     /*
+     * 设置管理员信息
+     * */
+    public function setAdmin($admin)
+    {
+        $this->admin = $admin;
+    }
+    /*
      * attempt
      * */
     public function storeAdmin()

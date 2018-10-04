@@ -20,10 +20,22 @@ class Menu
             'userList' => '用户列表'
         ))
     );
-
+    /*
+     * 菜单栏访问地址
+     * */
     const masterUrl = array(
         'adminList' => 'admin/adminList',
         'roleList' => 'admin/roleList',
         'userList' => 'admin/userList',
+    );
+
+    /*
+     * 菜单栏图片样式
+     * */
+    const masterIconClass = array(
+        'admin' => '',
+        'adminList' => '',
+        'roleList' => '',
+        'userList' => '',
     );
 }
