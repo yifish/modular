@@ -102,7 +102,7 @@ class MenuPower
             $html .= '<a href="' . $this->issetMenuUrl($key, 'javascript:;') . '">';
             $html .= '<i class="'. $this->issetMenuIconClass($key) .'"></i>';
             $html .= '<span>'. $value .'</span>';
-            $html .= '<i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>';
+//            $html .= '<i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>';
             $html .= '</a>';
             $html .= '</li>';
         }
