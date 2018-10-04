@@ -8,10 +8,13 @@
 
 namespace App\WebMenu;
 
+use App\MyTrait\CompetenceTrait;
 use App\MyCommon\Menu;
 
 class MenuPower
 {
+    use CompetenceTrait;
+
     private $menuHtml = ''; // 菜单html
 
     private $menu = array(); // 菜单数组
@@ -52,7 +55,29 @@ class MenuPower
         if ($admin->roles->competence == '*') {
             return true;
         }
-        return false;
+        $comIdStr = trim($admin->roles['competence'], ',');
+        $competence = $this->getCompetenceList($comIdStr)->toArray();
+        $competence = array_column($competence, 'competence');
+        $competence = ',' . implode(',', $competence) . ',';
+        $this->menu = $this->getMenu($competence, $this->menu);
+    }
+    /*
+     * 递归获取左侧菜单
+     * */
+    public function getMenu($competence, $array = array(), $menu = 'submenu')
+    {
+        $arr = array();
+        foreach ($array as $key => $val) {
+            if (strpos($competence,',' . $key . ',', 0) !== false || $competence == '*') {
+                if (is_array($val)) {
+                    $arr[$key] = array('name' => $val['name'], 'submenu' => array());
+                    $arr[$key]['submenu'] = $this->getMenu($competence, $val[$menu], $menu);
+                } else {
+                    $arr[$key] = $val;
+                }
+            }
+        }
+        return $arr;
     }
     /*
      * 菜单初始化
