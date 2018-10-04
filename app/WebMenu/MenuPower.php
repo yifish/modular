@@ -23,6 +23,10 @@ class MenuPower
 
     private $menuIconClass = array(); // 菜单图标样式
 
+    private $url = ''; // 当前地址
+
+    private $menuShowUl = false; // 当前地址
+
     public function __construct()
     {
         $this->menu = Menu::master;
@@ -32,6 +36,8 @@ class MenuPower
         $this->menuIconClass = Menu::masterIconClass;
 
         $this->checkCompetence();
+
+        $this->setShowUl();
 
         $this->install();
     }
@@ -86,6 +92,7 @@ class MenuPower
     {
         $html = '';
         foreach ($this->menu as $key => $value) {
+            $this->menuShowUl = false;
             $childHtml = '';
             if (is_array($value)) {
                 $childHtml = $this->setChildHtml($value['submenu']);
@@ -117,22 +124,38 @@ class MenuPower
         return isset($this->menuIconClass[$string]) ? $this->menuIconClass[$string] : $default;
     }
     /*
+     * 获取地址展示二级菜单
+     * */
+    public function setShowUl()
+    {
+        $url = \Request::getRequestUri();
+        $this->url = trim($url,'/');
+    }
+    /*
      * 生成子菜单的html
      * */
     public function setChildHtml($submenu = array())
     {
-        $html = '<ul class="tpl-left-nav-sub-menu">';
+        $startHtml = '<ul class="tpl-left-nav-sub-menu">';
+        $html = '';
         foreach ($submenu as $key => $value) {
             $html .= '<li>';
-            $html .= '<a href="' . $this->issetMenuUrl($key, 'javascript:;') . '">';
-            $html .= '<i class="'. $this->issetMenuIconClass($key) .'"></i>';
+            $html .= '<a href="' . $this->issetMenuUrl($key, 'javascript:;') . '"';
+            if (strpos('/' . $this->url, $this->issetMenuUrl($key, 'javascript:;'), 0) !== false) {
+                $startHtml = '<ul class="tpl-left-nav-sub-menu" style="display: block;">';
+                $this->menuShowUl = true;
+                $html .= ' class="active" ';
+            }
+            $html .= '>';
+//            $html .= '<i class="'. $this->issetMenuIconClass($key) .'"></i>';
+            $html .= '<i class="am-icon-angle-right"></i>';
             $html .= '<span>'. $value .'</span>';
 //            $html .= '<i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>';
             $html .= '</a>';
             $html .= '</li>';
         }
         $html .= '</ul>';
-        return $html;
+        return $startHtml . $html;
     }
     /*
      * 生成菜单html
@@ -144,7 +167,11 @@ class MenuPower
         $html .= '<a href="'. $this->issetMenuUrl($enName, 'javascript:;') .'" class="nav-link tpl-left-nav-link-list">';
         $html .= '<i class="'. $this->issetMenuIconClass($enName) .'"></i>';
         $html .= '<span>'. $name .'</span>';
-        $html .= '<i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>';
+        $html .= '<i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right';
+        if ($this->menuShowUl) {
+            $html .= ' tpl-left-nav-more-ico-rotate';
+        }
+        $html .= '"></i>';
         $html .= '</a>';
         $html .= $childHtml;
         $html .= '</li>';

@@ -15,6 +15,8 @@ class AdminWebController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $limit = 10;
+
     public function __construct()
     {
     }

@@ -33,7 +33,7 @@ class Menu
      * 菜单栏图片样式
      * */
     const masterIconClass = array(
-        'admin' => '',
+        'admin' => 'am-icon-user',
         'adminList' => '',
         'roleList' => '',
         'userList' => '',

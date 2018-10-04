@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'adminToken' => \App\Http\Middleware\AdminToken::class,
         'role' => \App\Http\Middleware\RoleMiddleware::class,
         'AdminWeb' => \App\Http\Middleware\AdminWeb::class,
+        'webRole' => \App\Http\Middleware\AdminWebRole::class,
     ];
 }
