@@ -51,6 +51,13 @@ class adminService extends service
         $this->admin->loginTime = time();
     }
     /*
+     * 重置token
+     * */
+    public function deleteToken()
+    {
+        $this->admin->token = '';
+    }
+    /*
      * 返回管理员信息
      * */
     public function getAdmin()
@@ -62,7 +69,14 @@ class adminService extends service
      * */
     public function setAdmin($admin)
     {
-        $this->admin = $admin;
+        switch ($admin)
+        {
+            case 'session':
+                $this->admin = session('admin');
+                break;
+            default:
+                $this->admin = $admin;
+        }
     }
     /*
      * attempt

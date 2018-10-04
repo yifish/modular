@@ -13,6 +13,6 @@ class Home
     public function index()
     {
         $system = array();
-        return view('admin.home',compact('system'));
+        return view('admin.home', compact('system'));
     }
 }

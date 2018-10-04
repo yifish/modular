@@ -13,6 +13,7 @@
 
 Route::group(['namespace' => 'AdminWeb'],function () {
     Route::get('login', 'Login@login');
+    Route::get('logout', 'Login@logout');
     Route::get('home', 'Home@index')->middleware('AdminWeb');
     Route::post('/login/loginPost','Login@loginPost');
 });

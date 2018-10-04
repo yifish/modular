@@ -20,6 +20,16 @@ class Login extends AdminWebController
     {
         return view('admin.login');
     }
+    public function logout(Request $request)
+    {
+        $adminService = new adminService();
+        $adminService->setAdmin('session');
+        $adminService->deleteToken();
+        $admin = $adminService->getAdmin();
+        $admin->save();
+        session(['admin' => null]);
+        return redirect('/admin/login');
+    }
     /*
      * 登录方法
      * */
