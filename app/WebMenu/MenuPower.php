@@ -129,7 +129,16 @@ class MenuPower
     public function setShowUl()
     {
         $url = \Request::getRequestUri();
-        $this->url = trim($url,'/');
+        $url = trim($url,'/');
+        foreach (Menu::masterUrlGroup as $key => $value) {
+            foreach ($value as $k => $v) {
+                if (strpos($v, $url, 0) !== false) {
+                    $this->url = $this->menuUrl[$key];
+                    return true;
+                }
+            }
+        }
+        return true;
     }
 
     /*

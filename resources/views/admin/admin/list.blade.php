@@ -30,18 +30,20 @@
                 <div class="am-g">
                     <div class="am-u-sm-12 am-u-md-6">
                         <div class="am-btn-toolbar">
-                            <a href="{{url('admin/power/user/create')}}">
-                                <div class="am-btn-group am-btn-group-xs">
-                                    <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button>
-                                </div>
-                            </a>
+                            @if (session('admin')->isCompetence('adminCreate'))
+                                <a href="{{url('admin/adminCreate')}}">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span>新增</button>
+                                    </div>
+                                </a>
+                            @endif
                         </div>
                     </div>
                     <div class="am-u-sm-12 am-u-md-3" style="text-align: right;">
-                        <form method="post" action="">
+                        <form method="post" action="{{ url('admin/adminList') }}">
                             @csrf
                             <div class="am-input-group am-input-group-sm">
-                                <input type="text" name="content" value="{{old('content')}}" class="am-form-field" placeholder="用户名">
+                                <input type="text" name="name" value="{{old('name')}}" class="am-form-field" placeholder="用户名">
                                 <span class="am-input-group-btn">
                             <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="submit"></button>
                         </span>
@@ -60,6 +62,7 @@
                                     <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
                                     <th>ID</th>
                                     <th>用户名</th>
+                                    <th>角色名</th>
                                     <th>账号</th>
                                     <th>创建日期</th>
                                     <th>更新日期</th>
@@ -73,7 +76,8 @@
                                         <td><input type="checkbox"></td>
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->name}}</td>
-                                        <td>{{$item->account}}</td>
+                                        <td>{{$item->roles->name}}</td>
+                                        <td>{{$item->loginName}}</td>
                                         <td>{{$item->created_at}}</td>
                                         <td>{{$item->updated_at}}</td>
                                         <td>@if($item->status==1)正常
@@ -83,8 +87,12 @@
                                         <td>
                                             {{--<div class="am-btn-toolbar">--}}
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <button type="button" onclick="location.href='{{url('admin/power/user/create',['id'=>$item->id])}}'" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span>编辑</button>
-                                                <button type="button" id="delete_handle_{{$item->id}}" class="btn_delete am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span>删除</button>
+                                                @if (session('admin')->isCompetence('adminUpdate'))
+                                                    <button type="button" onclick="location.href='{{url('admin/adminUpdate',['id'=>$item->id])}}'" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span>编辑</button>
+                                                @endif
+                                                @if (session('admin')->isCompetence('adminDelete'))
+                                                    <button type="button" id="delete_handle_{{$item->id}}" class="btn_delete am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span>删除</button>
+                                                @endif
                                             </div>
                                             {{--</div>--}}
                                         </td>

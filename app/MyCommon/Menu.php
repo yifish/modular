@@ -29,6 +29,15 @@ class Menu
         'userList' => 'admin/userList',
     );
     /*
+     * 页面按钮
+     * */
+    const masterUrlGroup = array(
+        'adminList' => array(
+            'admin/adminList',
+            'admin/adminCreate',
+        )
+    );
+    /*
      * 菜单栏图片样式
      * */
     const masterIconClass = array(

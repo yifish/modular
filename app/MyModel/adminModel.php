@@ -26,4 +26,18 @@ class adminModel extends Model
     {
         return $this->roles['name'];
     }
+
+    /*
+     * 判断是否有权限
+     * */
+    public function isCompetence(String $string)
+    {
+        if ($this->roles->competence == '*') {
+            return true;
+        }
+        if (strpos($this->roles->competenceEnName,',' . $string . ',',0) !== false) {
+            return true;
+        }
+        return false;
+    }
 }

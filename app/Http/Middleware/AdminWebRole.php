@@ -29,7 +29,7 @@ class AdminWebRole
             if (!$competence) {
                 throw new AdminWebException(trans('login.null_competence'));
             }
-            if (!strpos($admin->roles['competence'],',' . $competence->id . ',',1)) {
+            if (strpos($admin->roles['competence'],',' . $competence->id . ',',0) === false) {
                 throw new AdminWebException(trans('login.no_competence'));
             }
         }

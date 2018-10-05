@@ -33,7 +33,7 @@ trait CompetenceTrait
         if (!$competence) {
             throw new SuccessException(Code::NULL_COMPETENCE, trans('login.null_competence'));
         }
-        if (!strpos($competenceId,',' . $competence->id . ',',1)) {
+        if (strpos($competenceId,',' . $competence->id . ',',0)  === false) {
             throw new SuccessException(Code::NO_COMPETENCE, trans('login.no_competence'));
         }
     }
