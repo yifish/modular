@@ -35,6 +35,7 @@ class Menu
         'adminList' => array(
             'admin/adminList',
             'admin/adminCreate',
+            'admin/adminUpdate',
         )
     );
     /*

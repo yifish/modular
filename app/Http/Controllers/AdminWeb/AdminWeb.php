@@ -9,10 +9,22 @@
 namespace App\Http\Controllers\AdminWeb;
 
 use App\MyModel\adminModel;
+use App\MyModel\roleModel;
 use Illuminate\Http\Request;
 
 class AdminWeb extends AdminWebController
 {
+    private $admin;
+
+    private $formType = 'create';
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->admin = new adminModel();
+    }
+
     /*
      * 管理员列表页面
      * */
@@ -31,6 +43,18 @@ class AdminWeb extends AdminWebController
      * */
     public function adminCreate()
     {
-        return view('admin.admin.create');
+        $admin = $this->admin;
+        $formType = $this->formType;
+        $role = roleModel::all();
+        return view('admin.admin.create', compact('role', 'admin', 'formType'));
+    }
+    /*
+     * 修改管理员
+     * */
+    public function adminUpdate(adminModel $admin)
+    {
+        $this->formType = 'update';
+        $this->admin = $admin;
+        return $this->adminCreate();
     }
 }

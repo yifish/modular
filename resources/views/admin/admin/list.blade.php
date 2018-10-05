@@ -61,7 +61,7 @@
                                 <tr>
                                     <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
                                     <th>ID</th>
-                                    <th>用户名</th>
+                                    <th>名称</th>
                                     <th>角色名</th>
                                     <th>账号</th>
                                     <th>创建日期</th>
