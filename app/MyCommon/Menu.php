@@ -28,7 +28,6 @@ class Menu
         'roleList' => 'admin/roleList',
         'userList' => 'admin/userList',
     );
-
     /*
      * 菜单栏图片样式
      * */

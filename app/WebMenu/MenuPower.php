@@ -131,6 +131,18 @@ class MenuPower
         $url = \Request::getRequestUri();
         $this->url = trim($url,'/');
     }
+
+    /*
+     * 判断地址显示菜单
+     * */
+    public function isActive($key)
+    {
+        if (strpos('/' . $this->url, $this->issetMenuUrl($key, 'javascript:;'), 0) !== false) {
+            return true;
+        }
+        return false;
+    }
+
     /*
      * 生成子菜单的html
      * */
@@ -141,7 +153,7 @@ class MenuPower
         foreach ($submenu as $key => $value) {
             $html .= '<li>';
             $html .= '<a href="' . $this->issetMenuUrl($key, 'javascript:;') . '"';
-            if (strpos('/' . $this->url, $this->issetMenuUrl($key, 'javascript:;'), 0) !== false) {
+            if ($this->isActive($key)) {
                 $startHtml = '<ul class="tpl-left-nav-sub-menu" style="display: block;">';
                 $this->menuShowUl = true;
                 $html .= ' class="active" ';
