@@ -132,7 +132,7 @@ class MenuPower
         $url = trim($url,'/');
         foreach (Menu::masterUrlGroup as $key => $value) {
             foreach ($value as $k => $v) {
-                if (strpos($v, $url, 0) !== false) {
+                if (strpos($url, $v, 0) !== false) {
                     $this->url = $this->menuUrl[$key];
                     return true;
                 }

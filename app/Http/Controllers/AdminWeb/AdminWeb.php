@@ -19,8 +19,9 @@ class AdminWeb extends AdminWebController
     public function adminList(Request $request)
     {
         $adminModel = new adminModel();
+        $request->flash();
         if ($request->input('name')) {
-            $adminModel->where('name', 'like', '%' . $request->input('name') . '%');
+            $adminModel = $adminModel->where('name', 'like', '%' . $request->input('name') . '%');
         }
         $list = $adminModel->orderBy('created_at', 'desc')->paginate($this->limit);
         return view('admin.admin.list', compact('list'));

@@ -103,7 +103,7 @@
                             </table>
                             <div class="am-cf">
                                 <div class="am-fr">
-                                    {{ $list->appends(['content' =>old('content')])->links() }}
+                                    {{ $list->appends(['name' =>old('name')])->links() }}
                                 </div>
                             </div>
                             <hr>
