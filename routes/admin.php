@@ -16,9 +16,15 @@ Route::group(['namespace' => 'AdminWeb'],function () {
     Route::get('logout', 'Login@logout');
     Route::get('home', 'Home@index')->middleware('AdminWeb');
     Route::post('/login/loginPost','Login@loginPost');
+    /* 管理员curd */
     Route::any('adminList', 'AdminWeb@adminList')->middleware('webRole:adminList');
     Route::get('adminCreate', 'AdminWeb@adminCreate')->middleware('webRole:adminCreate');
     Route::get('adminUpdate/{admin?}', 'AdminWeb@adminUpdate')->middleware('webRole:adminUpdate');
     Route::post('createAdminPost', 'AdminWeb@createAdminPost')->middleware('webRole:adminCreate');
     Route::post('updateAdminPost', 'AdminWeb@updateAdminPost')->middleware('webRole:adminUpdate');
+    Route::get('adminDelete/{admin?}', 'AdminWeb@adminDelete')->middleware('webRole:adminDelete');
+    /* 角色curd */
+    Route::any('roleList', 'Role@roleList')->middleware('webRole:roleList');
+    Route::get('roleCreate', 'Role@roleCreate')->middleware('webRole:roleCreate');
+    Route::get('roleUpdate/{role?}', 'Role@roleUpdate')->middleware('webRole:roleUpdate');
 });

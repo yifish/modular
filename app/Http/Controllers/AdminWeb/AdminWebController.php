@@ -17,6 +17,8 @@ class AdminWebController extends BaseController
 
     protected $limit = 10;
 
+    protected $formType = 'create';
+
     public function __construct()
     {
     }

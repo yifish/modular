@@ -18,8 +18,6 @@ class AdminWeb extends AdminWebController
 {
     private $admin;
 
-    private $formType = 'create';
-
     public function __construct()
     {
         parent::__construct();
@@ -84,6 +82,17 @@ class AdminWeb extends AdminWebController
         }
         throw new WebException(['errors' => trans('admin.error_update')]);
     }
+    /*
+     * 删除方法
+     * */
+    public function adminDelete(adminModel $admin)
+    {
+        if ($admin->id != 1) {
+            $admin->forceDelete();
+        }
+        return redirect('admin/adminList');
+    }
+
     /*
      * 修改方法
      * */

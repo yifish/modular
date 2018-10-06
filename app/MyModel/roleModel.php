@@ -20,6 +20,19 @@ class roleModel extends Model
             return $this->competence;
         }
         $competence = competenceModel::whereIn('id', explode(',', trim($this->competence, ',')))->select('competence')->get();
-        return implode(',', array_column($competence->toArray(), 'competence'));
+        return ',' . implode(',', array_column($competence->toArray(), 'competence')) . ',';
+    }
+    /*
+     * 判断是否有权限
+     * */
+    public function isCompetence(String $string)
+    {
+        if ($this->competence == '*') {
+            return true;
+        }
+        if (strpos($this->competenceEnName,',' . $string . ',',0) !== false) {
+            return true;
+        }
+        return false;
     }
 }
