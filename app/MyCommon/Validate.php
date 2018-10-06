@@ -12,6 +12,9 @@ namespace App\MyCommon;
 class Validate
 {
     const masterValidate = array(
+        'id' => array(
+            'id' => 'required|numeric',
+        ),
         'login' => array(
             'loginName' => 'required|string|min:5|max:10',
             'password' => 'required|string'
@@ -23,7 +26,6 @@ class Validate
         'list' => array(
         ),
         'adminUpdate' => array(
-            'adminId' => 'required|numeric',
             'name' => 'string|min:2|max:30',
             'password' => 'string|min:6|max:64',
             'roleId' => 'numeric'
@@ -33,7 +35,7 @@ class Validate
             'roleId' => 'required|numeric'
         ),
         'adminDelete' => array(
-            'adminId' => 'required'
+            'adminId' => 'required|numeric'
         ),
         'roleCreate' => array(
             'name' => 'required|string|min:2|max:30',

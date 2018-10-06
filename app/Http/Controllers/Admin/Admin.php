@@ -49,7 +49,7 @@ class Admin extends Controller
      * */
     public function adminUpdate(Request $request)
     {
-        $this->myValidator('adminUpdate', $request);
+        $this->myValidator(['adminDelete', 'adminUpdate'], $request);
         $adminService = new adminService();
         return $adminService->update($request);
     }

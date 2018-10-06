@@ -19,4 +19,6 @@ Route::group(['namespace' => 'AdminWeb'],function () {
     Route::any('adminList', 'AdminWeb@adminList')->middleware('webRole:adminList');
     Route::get('adminCreate', 'AdminWeb@adminCreate')->middleware('webRole:adminCreate');
     Route::get('adminUpdate/{admin?}', 'AdminWeb@adminUpdate')->middleware('webRole:adminUpdate');
+    Route::post('createAdminPost', 'AdminWeb@createAdminPost')->middleware('webRole:adminCreate');
+    Route::post('updateAdminPost', 'AdminWeb@updateAdminPost')->middleware('webRole:adminUpdate');
 });

@@ -25,7 +25,10 @@
             <div class="tpl-block">
                 <div class="am-g tpl-amazeui-form">
                     <div class="am-u-sm-12 am-u-md-9">
-                        <form action="{{url('admin/power/user/store')}}" method="post" class="am-form am-form-horizontal">
+                        <form action="{{url('admin/'. $formType .'AdminPost')}}" method="post" class="am-form am-form-horizontal">
+                            @if ($errors->has('errors'))
+                                <small style="color:red;">{{$errors->first('errors')}}</small>
+                            @endif
                             @csrf
                             @if($formType == 'update')
                                 <input type="hidden"  name="id" value="{{$admin->id}}">
@@ -64,16 +67,21 @@
                                 </div>
                             @endif
                             <div class="am-form-group">
-                                <label for="admin-role" class="am-u-sm-3 am-form-label">密码</label>
+                                <label for="admin-roleId" class="am-u-sm-3 am-form-label">密码</label>
                                 <div class="am-u-sm-9">
-                                    <select id="admin-role" name="role">
-                                        <option value="">请选择角色</option>
+                                    <select id="admin-roleId" name="roleId">
+                                        <option value="-1">请选择角色</option>
                                         @foreach($role as $key => $value)
-                                            <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                            @if ($formType == 'update' && $admin->role == $value->id)
+                                                <option value="{{ $value->id }}" selected>{{ $value->name }}</option>
+                                            @else
+                                                <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                            @endif
+
                                         @endforeach
                                     </select>
-                                    @if ($errors->has('role'))
-                                        <small style="color:red;">{{$errors->first('role')}}</small>
+                                    @if ($errors->has('roleId'))
+                                        <small style="color:red;">{{$errors->first('roleId')}}</small>
                                     @endif
                                 </div>
                             </div>
@@ -90,6 +98,5 @@
             </div>
             <div class="tpl-alert"></div>
         </div>
-
 
 @endsection

@@ -11,6 +11,8 @@ namespace App\Http\Controllers\AdminWeb;
 use App\MyModel\adminModel;
 use App\MyModel\roleModel;
 use Illuminate\Http\Request;
+use App\MyCommon\Cipher;
+use App\Exceptions\WebException;
 
 class AdminWeb extends AdminWebController
 {
@@ -57,4 +59,54 @@ class AdminWeb extends AdminWebController
         $this->admin = $admin;
         return $this->adminCreate();
     }
+    /*
+     * 添加管理员提交
+     * */
+    public function createAdminPost(Request $request)
+    {
+        $this->myValidator(['adminCreate', 'register'], $request);
+        $this->saveStore($request);
+        if ($this->admin->save()) {
+            return redirect('admin/adminList');
+        }
+        throw new WebException(['errors' => trans('admin.error_create')]);
+    }
+    /*
+     * 修改管理员提交
+     * */
+    public function updateAdminPost(Request $request)
+    {
+        $this->myValidator(['id', 'adminUpdate'], $request);
+        $this->admin = adminModel::find($request->id);
+        $this->saveStore($request);
+        if ($this->admin->save()) {
+            return redirect('admin/adminList');
+        }
+        throw new WebException(['errors' => trans('admin.error_update')]);
+    }
+    /*
+     * 修改方法
+     * */
+    public function saveStore(Request $request)
+    {
+        if ($request->input('name')) {
+            $this->admin->name = $request->name;
+        }
+        if ($request->input('loginName')) {
+            $this->admin->loginName = $request->loginName;
+        }
+        if ($request->input('roleId')) {
+            if (empty(roleModel::find($request->roleId))) {
+                throw new WebException(['roleId' => trans('admin.no_role')]);
+            }
+            $this->admin->role = $request->roleId;
+        }
+        if ($request->input('password')) {
+            $cipher = new Cipher($request->password);
+            $this->admin->random = $cipher->getString();
+            $this->admin->password = $cipher->encryption();
+        }
+    }
+
+
 }
