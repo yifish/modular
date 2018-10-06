@@ -113,7 +113,7 @@
 
         <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
             <div class="am-modal-dialog">
-                <div class="am-modal-hd">删除角色</div>
+                <div class="am-modal-hd">删除用户</div>
                 <div class="am-modal-bd">
                     {{--你，确定要删除这条记录吗？--}}
                 </div>

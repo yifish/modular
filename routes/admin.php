@@ -36,5 +36,5 @@ Route::group(['namespace' => 'AdminWeb'],function () {
     Route::get('userUpdate/{user?}', 'User@userUpdate')->middleware('webRole:userUpdate');
     Route::post('createUserPost', 'User@createUserPost')->middleware('webRole:userCreate');
     Route::post('updateUserPost', 'User@updateUserPost')->middleware('webRole:userUpdate');
-    Route::get('UserDelete/{user?}', 'User@userDelete')->middleware('webRole:userDelete');
+    Route::get('userDelete/{user?}', 'User@userDelete')->middleware('webRole:userDelete');
 });

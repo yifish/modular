@@ -84,9 +84,7 @@ class User extends AdminWebController
      * */
     public function userDelete(userModel $user)
     {
-        if ($user->id != 1) {
-            $user->forceDelete();
-        }
+        $user->forceDelete();
         return redirect('admin/userList');
     }
 
