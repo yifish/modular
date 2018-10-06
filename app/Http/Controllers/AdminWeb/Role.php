@@ -11,6 +11,8 @@ namespace App\Http\Controllers\AdminWeb;
 use Illuminate\Http\Request;
 use App\MyModel\roleModel;
 use App\MyCommon\Role as Competence;
+use App\Exceptions\WebException;
+use App\MyModel\competenceModel;
 
 class Role extends AdminWebController
 {
@@ -53,5 +55,54 @@ class Role extends AdminWebController
         $this->formType = 'update';
         $this->role = $role;
         return $this->roleCreate();
+    }
+    /*
+ * 添加管理员提交
+ * */
+    public function createRolePost(Request $request)
+    {
+        $this->myValidator('roleWebCreate', $request);
+        $this->saveStore($request);
+        if ($this->role->save()) {
+            return redirect('admin/roleList');
+        }
+        throw new WebException(['errors' => trans('admin.error_create')]);
+    }
+    /*
+     * 修改管理员提交
+     * */
+    public function updateRolePost(Request $request)
+    {
+        $this->myValidator(['id', 'roleWebCreate'], $request);
+        $this->role = roleModel::find($request->id);
+        $this->saveStore($request);
+        if ($this->role->save()) {
+            return redirect('admin/roleList');
+        }
+        throw new WebException(['errors' => trans('admin.error_update')]);
+    }
+    /*
+     * 删除方法
+     * */
+    public function roleDelete(roleModel $role)
+    {
+        if ($role->id != 1) {
+            $role->forceDelete();
+        }
+        return redirect('admin/roleList');
+    }
+
+    /*
+     * 修改方法
+     * */
+    public function saveStore(Request $request)
+    {
+        if ($request->input('name')) {
+            $this->role->name = $request->name;
+        }
+        if ($request->input('competence')) {
+            $competence = competenceModel::whereIn('competence', $request->competence)->select('id')->get();
+            $this->role->competence = ',' . implode(',', array_column($competence->toArray(), 'id')) . ',';
+        }
     }
 }

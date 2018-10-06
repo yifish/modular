@@ -107,7 +107,7 @@
 
         <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
             <div class="am-modal-dialog">
-                <div class="am-modal-hd">删除管理员</div>
+                <div class="am-modal-hd">删除角色</div>
                 <div class="am-modal-bd">
                     {{--你，确定要删除这条记录吗？--}}
                 </div>
@@ -127,7 +127,7 @@
                             relatedTarget: _self,
                             onConfirm: function(options) {
                                 var link = this.relatedTarget;
-                                var url =  "{{ url('admin/adminDelete') }}" + "/" + link.attr('del_id');
+                                var url =  "{{ url('admin/roleDelete') }}" + "/" + link.attr('del_id');
                                 window.location.href = url;
                             },
                             // closeOnConfirm: false,

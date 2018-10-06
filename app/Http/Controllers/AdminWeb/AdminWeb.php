@@ -116,6 +116,4 @@ class AdminWeb extends AdminWebController
             $this->admin->password = $cipher->encryption();
         }
     }
-
-
 }

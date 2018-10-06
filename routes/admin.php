@@ -27,4 +27,7 @@ Route::group(['namespace' => 'AdminWeb'],function () {
     Route::any('roleList', 'Role@roleList')->middleware('webRole:roleList');
     Route::get('roleCreate', 'Role@roleCreate')->middleware('webRole:roleCreate');
     Route::get('roleUpdate/{role?}', 'Role@roleUpdate')->middleware('webRole:roleUpdate');
+    Route::post('createRolePost', 'Role@createRolePost')->middleware('webRole:roleCreate');
+    Route::post('updateRolePost', 'Role@updateRolePost')->middleware('webRole:roleUpdate');
+    Route::get('roleDelete/{role?}', 'Role@roleDelete')->middleware('webRole:roleDelete');
 });

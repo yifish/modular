@@ -41,6 +41,10 @@ class Validate
             'name' => 'required|string|min:2|max:30',
             'competence' => 'required|string|min:1|max:1000'
         ),
+        'roleWebCreate' => array(
+            'name' => 'required|string|min:2|max:30',
+            'competence' => 'required'
+        ),
         'roleId' => array(
             'roleId' => 'required|numeric'
         ),
