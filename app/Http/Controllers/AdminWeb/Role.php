@@ -25,7 +25,7 @@ class Role extends AdminWebController
         $this->role = new roleModel();
     }
     /*
-     * 管理员列表页面
+     * 角色列表页面
      * */
     public function roleList(Request $request)
     {
@@ -38,7 +38,7 @@ class Role extends AdminWebController
         return view('admin.role.list', compact('list'));
     }
     /*
-     * 创建管理员
+     * 创建角色
      * */
     public function roleCreate()
     {
@@ -48,7 +48,7 @@ class Role extends AdminWebController
         return view('admin.role.create', compact('role','formType', 'competence'));
     }
     /*
-     * 修改管理员
+     * 修改角色
      * */
     public function roleUpdate(roleModel $role)
     {
@@ -57,7 +57,7 @@ class Role extends AdminWebController
         return $this->roleCreate();
     }
     /*
-     * 添加管理员提交
+     * 添加角色提交
      * */
     public function createRolePost(Request $request)
     {
@@ -69,7 +69,7 @@ class Role extends AdminWebController
         throw new WebException(['errors' => trans('admin.error_create')]);
     }
     /*
-     * 修改管理员提交
+     * 修改角色提交
      * */
     public function updateRolePost(Request $request)
     {

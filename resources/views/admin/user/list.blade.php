@@ -23,15 +23,15 @@
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    管理员管理<span class="am-icon-code"></span> 列表
+                    管理员管理<span class="am-icon-code"></span> 用户列表
                 </div>
             </div>
             <div class="tpl-block">
                 <div class="am-g">
                     <div class="am-u-sm-12 am-u-md-6">
                         <div class="am-btn-toolbar">
-                            @if (session('admin')->isCompetence('roleCreate'))
-                                <a href="{{url('admin/roleCreate')}}">
+                            @if (session('admin')->isCompetence('userCreate'))
+                                <a href="{{url('admin/userCreate')}}">
                                     <div class="am-btn-group am-btn-group-xs">
                                         <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span>新增</button>
                                     </div>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="am-u-sm-12 am-u-md-3" style="text-align: right;">
-                        <form method="post" action="{{ url('admin/roleList') }}">
+                        <form method="post" action="{{ url('admin/userList') }}">
                             @csrf
                             <div class="am-input-group am-input-group-sm">
                                 <input type="text" name="name" value="{{old('name')}}" class="am-form-field" placeholder="名称">
@@ -62,6 +62,9 @@
                                     <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
                                     <th>ID</th>
                                     <th>名称</th>
+                                    <th>登录账号</th>
+                                    <th>手机号</th>
+                                    <th>最后一次登录</th>
                                     <th>创建日期</th>
                                     <th>更新日期</th>
                                     <th>操作</th>
@@ -73,14 +76,17 @@
                                         <td><input type="checkbox"></td>
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->name}}</td>
+                                        <td>{{$item->loginName}}</td>
+                                        <td>{{$item->phone}}</td>
+                                        <td>{{ date('Y-m-d H:i:s', $item->loginTime) }}</td>
                                         <td>{{$item->created_at}}</td>
                                         <td>{{$item->updated_at}}</td>
                                         <td>
                                             <div class="am-btn-group am-btn-group-xs">
-                                                @if (session('admin')->isCompetence('roleUpdate'))
-                                                    <button type="button" onclick="location.href='{{url('admin/roleUpdate',['id'=>$item->id])}}'" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-archive"></span>编辑</button>
+                                                @if (session('admin')->isCompetence('userUpdate'))
+                                                    <button type="button" onclick="location.href='{{url('admin/userUpdate',['id'=>$item->id])}}'" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-archive"></span>编辑</button>
                                                 @endif
-                                                @if (session('admin')->isCompetence('roleDelete'))
+                                                @if (session('admin')->isCompetence('userDelete'))
                                                     <button type="button" del_id="{{$item->id}}" class="btn_delete am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span>删除</button>
                                                 @endif
                                             </div>
@@ -127,7 +133,7 @@
                             relatedTarget: _self,
                             onConfirm: function(options) {
                                 var link = this.relatedTarget;
-                                var url =  "{{ url('admin/roleDelete') }}" + "/" + link.attr('del_id');
+                                var url =  "{{ url('admin/userDelete') }}" + "/" + link.attr('del_id');
                                 window.location.href = url;
                             },
                             // closeOnConfirm: false,

@@ -23,6 +23,9 @@ class Validate
             'loginName' => 'required|unique:admin|string|min:5|max:10',
             'password' => 'required|string|min:6|max:64'
         ),
+        'password' => array(
+            'password' => 'string|min:6|max:64'
+        ),
         'list' => array(
         ),
         'adminUpdate' => array(

@@ -32,4 +32,9 @@ Route::group(['namespace' => 'AdminWeb'],function () {
     Route::get('roleDelete/{role?}', 'Role@roleDelete')->middleware('webRole:roleDelete');
     /* 用户curd */
     Route::any('userList', 'User@userList')->middleware('webRole:userList');
+    Route::get('userCreate', 'User@userCreate')->middleware('webRole:userCreate');
+    Route::get('userUpdate/{user?}', 'User@userUpdate')->middleware('webRole:userUpdate');
+    Route::post('createUserPost', 'User@createUserPost')->middleware('webRole:userCreate');
+    Route::post('updateUserPost', 'User@updateUserPost')->middleware('webRole:userUpdate');
+    Route::get('UserDelete/{user?}', 'User@userDelete')->middleware('webRole:userDelete');
 });
