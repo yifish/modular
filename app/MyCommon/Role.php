@@ -24,7 +24,9 @@ class Role
             'roleUpdate' => '修改角色',
             'roleDelete' => '删除角色',
             'userList' => '用户列表',
-            'userCreate' => '添加用户'
+            'userCreate' => '添加用户',
+            'userUpdate' => '修改用户',
+            'userDelete' => '删除用户',
         ))
     );
 }

@@ -30,4 +30,6 @@ Route::group(['namespace' => 'AdminWeb'],function () {
     Route::post('createRolePost', 'Role@createRolePost')->middleware('webRole:roleCreate');
     Route::post('updateRolePost', 'Role@updateRolePost')->middleware('webRole:roleUpdate');
     Route::get('roleDelete/{role?}', 'Role@roleDelete')->middleware('webRole:roleDelete');
+    /* 用户curd */
+    Route::any('userList', 'User@userList')->middleware('webRole:userList');
 });

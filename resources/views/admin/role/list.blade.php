@@ -23,7 +23,7 @@
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    管理员管理<span class="am-icon-code"></span> 列表
+                    管理员管理<span class="am-icon-code"></span> 角色列表
                 </div>
             </div>
             <div class="tpl-block">

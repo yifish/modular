@@ -41,6 +41,11 @@ class Menu
             'admin/roleList',
             'admin/roleCreate',
             'admin/roleUpdate',
+        ),
+        'userList' => array(
+            'admin/userList',
+            'admin/userCreate',
+            'admin/userUpdate',
         )
     );
     /*

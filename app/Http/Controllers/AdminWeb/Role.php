@@ -38,8 +38,8 @@ class Role extends AdminWebController
         return view('admin.role.list', compact('list'));
     }
     /*
- * 创建管理员
- * */
+     * 创建管理员
+     * */
     public function roleCreate()
     {
         $role = $this->role;
@@ -57,8 +57,8 @@ class Role extends AdminWebController
         return $this->roleCreate();
     }
     /*
- * 添加管理员提交
- * */
+     * 添加管理员提交
+     * */
     public function createRolePost(Request $request)
     {
         $this->myValidator('roleWebCreate', $request);
