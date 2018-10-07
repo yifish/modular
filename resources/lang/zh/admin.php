@@ -20,5 +20,6 @@ return [
     'no_competence' => '没有权限',
     'no_role' => '没有该角色',
     'no_delete_role' => '该角色不可删除',
+    'no_user' => '没有该用户',
 
 ];

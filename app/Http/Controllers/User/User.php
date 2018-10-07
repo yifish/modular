@@ -33,4 +33,16 @@ class User extends Controller
         $userService = new userService();
         return $userService->create($request);
     }
+    public function userUpdate(Request $request)
+    {
+        $this->myValidator(['userId', 'userUpdate'], $request);
+        $userService = new userService();
+        return $userService->update($request);
+    }
+    public function userDelete(Request $request)
+    {
+        $this->myValidator('userId', $request);
+        $userService = new userService();
+        return $userService->delete($request);
+    }
 }

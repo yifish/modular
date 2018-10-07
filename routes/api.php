@@ -47,6 +47,10 @@ $api->version('v1', function ($api) {
         // 用户列表
         $api->get('userList', 'User@userList')->middleware('role:userList');
         // 添加用户
-        $api->get('userCreate', 'User@userCreate')->middleware('role:userCreate');
+        $api->post('userCreate', 'User@userCreate')->middleware('role:userCreate');
+        // 修改用户
+        $api->post('userUpdate', 'User@userUpdate')->middleware('role:userUpdate');
+        // 删除用户
+        $api->post('userDelete', 'User@userDelete')->middleware('role:userDelete');
     });
 });
