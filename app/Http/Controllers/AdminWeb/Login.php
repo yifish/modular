@@ -49,6 +49,6 @@ class Login extends AdminWebController
             return $this->MyBackErrors(trans('login.error'));
         }
         $adminService->storeAdmin();
-        return redirect('admin/home');
+        return redirect('admin');
     }
 }
