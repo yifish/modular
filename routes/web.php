@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['namespace' => 'AdminWeb'],function () {
-
+Route::group(['namespace' => 'Blog', 'prefix' => 'blog'],function () {
+    Route::get('/', 'Home@home');
 });

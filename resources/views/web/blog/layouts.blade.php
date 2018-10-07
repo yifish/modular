@@ -9,59 +9,28 @@
     <title>BLOG</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="icon" type="image/png" href="{{ asset('assets/i/favicon.png') }}">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+    <link rel="icon" sizes="192x192" href="{{ asset('assets/i/app-icon72x72@2x.png') }}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
-    <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/i/app-icon72x72@2x.png') }}">
+    <meta name="msapplication-TileImage" content="{{ asset('assets/i/app-icon72x72@2x.png') }}">
     <meta name="msapplication-TileColor" content="#0e90d2">
-    <link rel="stylesheet" href="assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/amazeui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.blog.css') }}">
 </head>
 
 <body id="blog">
 
 <header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">
-    <div class="am-u-sm-8 am-u-sm-centered">
-        <img width="200" src="http://s.amazeui.org/media/i/brand/amazeui-b.png" alt="Amaze UI Logo"/>
-        <h2 class="am-hide-sm-only">中国首个开源 HTML5 跨屏前端框架</h2>
-    </div>
 </header>
-<hr>
+{{--<hr>--}}
 <!-- nav start -->
 <nav class="am-g am-g-fixed blog-fixed blog-nav">
-    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
-
-    <div class="am-collapse am-topbar-collapse" id="blog-collapse">
-        <ul class="am-nav am-nav-pills am-topbar-nav">
-            <li class="am-active"><a href="lw-index.html">首页</a></li>
-            <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                    首页布局 <span class="am-icon-caret-down"></span>
-                </a>
-                <ul class="am-dropdown-content">
-                    <li><a href="lw-index.html">1. blog-index-standard</a></li>
-                    <li><a href="lw-index-nosidebar.html">2. blog-index-nosidebar</a></li>
-                    <li><a href="lw-index-center.html">3. blog-index-layout</a></li>
-                    <li><a href="lw-index-noslider.html">4. blog-index-noslider</a></li>
-                </ul>
-            </li>
-            <li><a href="lw-article.html">标准文章</a></li>
-            <li><a href="lw-img.html">图片库</a></li>
-            <li><a href="lw-article-fullwidth.html">全宽页面</a></li>
-            <li><a href="lw-timeline.html">存档</a></li>
-        </ul>
-        <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
-            <div class="am-form-group">
-                <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
-            </div>
-        </form>
-    </div>
 </nav>
-<hr>
+{{--<hr>--}}
 <!-- nav end -->
 <!-- banner start -->
 <div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
@@ -245,16 +214,16 @@
                 我是妹子UI，中国首个开源 HTML5 跨屏前端框架
             </p><p>我不想成为一个庸俗的人。十年百年后，当我们死去，质疑我们的人同样死去，后人看到的是裹足不前、原地打转的你，还是一直奔跑、走到远方的我？</p>
         </div>
-        <div class="blog-sidebar-widget blog-bor">
-            <h2 class="blog-text-center blog-title"><span>Contact ME</span></h2>
-            <p>
-                <a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
-                <a href=""><span class="am-icon-github am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-weibo am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-reddit am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-weixin am-icon-fw blog-icon"></span></a>
-            </p>
-        </div>
+        {{--<div class="blog-sidebar-widget blog-bor">--}}
+            {{--<h2 class="blog-text-center blog-title"><span>Contact ME</span></h2>--}}
+            {{--<p>--}}
+                {{--<a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>--}}
+                {{--<a href=""><span class="am-icon-github am-icon-fw blog-icon"></span></a>--}}
+                {{--<a href=""><span class="am-icon-weibo am-icon-fw blog-icon"></span></a>--}}
+                {{--<a href=""><span class="am-icon-reddit am-icon-fw blog-icon"></span></a>--}}
+                {{--<a href=""><span class="am-icon-weixin am-icon-fw blog-icon"></span></a>--}}
+            {{--</p>--}}
+        {{--</div>--}}
         <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">
             <h2 class="blog-title"><span>TAG cloud</span></h2>
             <div class="am-u-sm-12 blog-clear-padding">
