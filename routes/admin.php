@@ -14,7 +14,7 @@
 Route::group(['namespace' => 'AdminWeb'],function () {
     Route::get('login', 'Login@login');
     Route::get('logout', 'Login@logout');
-    Route::get('home', 'Home@index')->middleware('AdminWeb');
+    Route::get('/', 'Home@index')->middleware('AdminWeb');
     Route::post('/login/loginPost','Login@loginPost');
     /* 管理员curd */
     Route::any('adminList', 'AdminWeb@adminList')->middleware('webRole:adminList');
