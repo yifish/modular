@@ -17,6 +17,7 @@ class Article extends Migration
         Schema::create('article', function (Blueprint $table) {
             $table->increments('id')->comment('文章表');
             $table->integer('publisherId')->default(0)->comment('发布人');
+            $table->integer('classId')->default(0)->comment('分类id');
             $table->string('publisherName', 50)->default('')->comment('发布人姓名');
             $table->tinyInteger('types')->default(0)->comment('类型，默认0:没有发布人1:管理员2:用户');
             $table->string('thumbnail', 300)->default('')->comment('缩略图');
@@ -25,6 +26,12 @@ class Article extends Migration
             $table->tinyInteger('status')->default(0)->comment('类型，默认0:未审核1:通过2:拒绝');
             $table->integer('give')->default(0)->comment('点赞');
             $table->string('releaseTime', 13)->default(0)->comment('发布时间');
+            $table->timestamps();
+        });
+
+        Schema::create('article_class', function (Blueprint $table) {
+            $table->increments('id')->comment('文章分类表');
+            $table->string('name', 50)->default('')->comment('分类名称');
             $table->timestamps();
         });
     }
