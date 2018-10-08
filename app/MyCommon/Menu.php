@@ -20,7 +20,8 @@ class Menu
             'userList' => '用户列表'
         )),
         'article' => array('name' => '文章管理', 'submenu' => array(
-            'articleList' => '文章列表'
+            'articleList' => '文章列表',
+            'articleClassList' => '文章分类列表',
         ))
 
     );
@@ -31,6 +32,8 @@ class Menu
         'adminList' => 'admin/adminList',
         'roleList' => 'admin/roleList',
         'userList' => 'admin/userList',
+        'articleList' => 'admin/articleList',
+        'articleClassList' => 'admin/articleClassList',
     );
     /*
      * 页面按钮
@@ -50,6 +53,14 @@ class Menu
             'admin/userList',
             'admin/userCreate',
             'admin/userUpdate',
+        ),
+        'articleList' => array(
+            'admin/articleList'
+        ),
+        'articleClassList' => array(
+            'admin/articleClassList',
+            'admin/articleCCreate',
+            'admin/articleCUpdate'
         )
     );
     /*
@@ -60,5 +71,8 @@ class Menu
         'adminList' => '',
         'roleList' => '',
         'userList' => '',
+        'article' => 'am-icon-file-text',
+        'articleList' => '',
+        'articleClassList' => '',
     );
 }

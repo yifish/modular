@@ -27,6 +27,12 @@ class Role
             'userCreate' => '添加用户',
             'userUpdate' => '修改用户',
             'userDelete' => '删除用户',
+        )),
+        'article' => array('name' => '文章管理', 'competence' => array(
+            'articleClassList' => '文章分类列表',
+            'articleCCreate' => '添加文章分类',
+            'articleCUpdate' => '修改文章分类',
+            'articleCDelete' => '删除文章分类',
         ))
     );
 }

@@ -57,6 +57,9 @@ class Validate
         'userCreate' => array(
             'phone' => 'string|min:8|max:20',
             'name' => 'string|min:2|max:30'
+        ),
+        'name' => array(
+            'name' => 'required|string|min:2|max:50'
         )
     );
 }
