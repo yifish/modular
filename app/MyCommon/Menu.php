@@ -55,7 +55,9 @@ class Menu
             'admin/userUpdate',
         ),
         'articleList' => array(
-            'admin/articleList'
+            'admin/articleList',
+            'admin/articleCreate',
+            'admin/articleUpdate',
         ),
         'articleClassList' => array(
             'admin/articleClassList',

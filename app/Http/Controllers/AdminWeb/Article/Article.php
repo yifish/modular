@@ -17,11 +17,15 @@ class Article extends AdminWebController
 {
     private $articleClass;
 
+    private $article;
+
     public function __construct()
     {
         parent::__construct();
 
         $this->articleClass = new articleClass();
+
+        $this->article = new articleModel();
     }
 
     /*
@@ -73,13 +77,26 @@ class Article extends AdminWebController
     {
         $this->articleClass->name = $request->name;
     }
-    /* 文章列表页面 */
+    /*
+     * 文章列表页面
+     * */
     public function articleList()
     {
         $articleModel = new articleModel();
         $list = $articleModel->orderBy('created_at', 'desc')->paginate($this->limit);
-        return view('admin.article.class.list', compact('list'));
+        return view('admin.article.article.list', compact('list'));
     }
+    /*
+     * 文章创建页
+     * */
+    public function articleCreate()
+    {
+        $article = $this->article;
+        $formType = $this->formType;
+        $articleClass = articleClass::all();
+        return view('admin.article.article.create', compact('articleClass', 'article', 'formType'));
+    }
+
 
 
 }

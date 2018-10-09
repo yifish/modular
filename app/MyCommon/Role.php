@@ -33,6 +33,10 @@ class Role
             'articleCCreate' => '添加文章分类',
             'articleCUpdate' => '修改文章分类',
             'articleCDelete' => '删除文章分类',
+            'articleList' => '文章列表',
+            'articleCreate' => '添加文章',
+            'articleUpdate' => '修改文章',
+            'articleDelete' => '删除文章',
         ))
     );
 }
