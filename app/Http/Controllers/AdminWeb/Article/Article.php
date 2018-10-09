@@ -11,6 +11,7 @@ namespace App\Http\Controllers\AdminWeb\Article;
 use App\Http\Controllers\AdminWeb\AdminWebController;
 use Illuminate\Http\Request;
 use App\MyModel\article\articleClass;
+use App\MyModel\article\articleModel;
 
 class Article extends AdminWebController
 {
@@ -72,4 +73,13 @@ class Article extends AdminWebController
     {
         $this->articleClass->name = $request->name;
     }
+    /* 文章列表页面 */
+    public function articleList()
+    {
+        $articleModel = new articleModel();
+        $list = $articleModel->orderBy('created_at', 'desc')->paginate($this->limit);
+        return view('admin.article.class.list', compact('list'));
+    }
+
+
 }

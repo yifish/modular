@@ -47,4 +47,11 @@ Route::group(['namespace' => 'AdminWeb\Article'],function () {
     Route::post('updateArticleCPost', 'Article@updateArticleCPost')->middleware('webRole:articleCUpdate');
     Route::get('articleCDelete/{articleClass?}', 'Article@articleCDelete')->middleware('webRole:articleCDelete');
 
+    Route::get('articleList', 'Article@articleList')->middleware('webRole:articleList');
+    Route::get('articleCreate', 'Article@articleCreate')->middleware('webRole:articleCreate');
+    Route::get('articleUpdate/{article?}', 'Article@articleUpdate')->middleware('webRole:articleUpdate');
+    Route::post('createArticlePost', 'Article@createArticlePost')->middleware('webRole:articleCreate');
+    Route::post('updateArticlePost', 'Article@updateArticlePost')->middleware('webRole:articleUpdate');
+    Route::get('articleDelete/{article?}', 'Article@articleDelete')->middleware('webRole:articleDelete');
+
 });

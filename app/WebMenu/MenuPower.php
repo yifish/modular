@@ -64,7 +64,7 @@ class MenuPower
         $comIdStr = trim($admin->roles['competence'], ',');
         $competence = $this->getCompetenceList($comIdStr)->toArray();
         $competence = array_column($competence, 'competence');
-        $competence = ',' . implode(',', $competence) . ',';
+        // $competence = ',' . implode(',', $competence) . ',';
         $this->menu = $this->getMenu($competence, $this->menu);
     }
     /*
@@ -74,7 +74,8 @@ class MenuPower
     {
         $arr = array();
         foreach ($array as $key => $val) {
-            if (strpos($competence,',' . $key . ',', 0) !== false || $competence == '*') {
+//            if (strpos($competence,',' . $key . ',', 0) !== false) {
+            if (in_array($key, $competence)) {
                 if (is_array($val)) {
                     $arr[$key] = array('name' => $val['name'], 'submenu' => array());
                     $arr[$key]['submenu'] = $this->getMenu($competence, $val[$menu], $menu);
