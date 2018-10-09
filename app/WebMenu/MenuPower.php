@@ -77,8 +77,8 @@ class MenuPower
 //            if (strpos($competence,',' . $key . ',', 0) !== false) {
             if (in_array($key, $competence)) {
                 if (is_array($val)) {
-                    $arr[$key] = array('name' => $val['name'], 'submenu' => array());
-                    $arr[$key]['submenu'] = $this->getMenu($competence, $val[$menu], $menu);
+                    $arr[$key] = array('name' => $val['name'], $menu => array());
+                    $arr[$key][$menu] = $this->getMenu($competence, $val[$menu], $menu);
                 } else {
                     $arr[$key] = $val;
                 }
