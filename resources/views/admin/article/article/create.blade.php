@@ -33,6 +33,7 @@
                             @if($formType == 'update')
                                 <input type="hidden"  name="id" value="{{$article->id}}">
                             @endif
+
                             <div class="am-form-group">
                                 <label for="admin-name" class="am-u-sm-3 am-form-label">标题</label>
                                 <div class="am-u-sm-9">
@@ -41,7 +42,7 @@
                                     @else
                                         <input type="text" id="admin-name" name="title" value="{{old('title')}}" placeholder="请输入标题">
                                     @endif
-                                    @if ($errors->has('name'))
+                                    @if ($errors->has('title'))
                                         <small style="color:red;">{{$errors->first('title')}}</small>
                                     @endif
                                 </div>
@@ -55,11 +56,33 @@
                                     @else
                                         <input type="text" id="admin-name" name="intro" value="{{old('intro')}}" placeholder="请输入简介">
                                     @endif
-                                    @if ($errors->has('name'))
+                                    @if ($errors->has('intro'))
                                         <small style="color:red;">{{$errors->first('intro')}}</small>
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="am-form-group">
+                                <label for="admin-roleId" class="am-u-sm-3 am-form-label">分类</label>
+                                <div class="am-u-sm-9">
+                                    <select id="admin-roleId" name="classId">
+                                        <option value="-1">请选择分类</option>
+                                        @foreach($articleClass as $key => $value)
+                                            @if ($formType == 'update' && $article->classId == $value->id)
+                                                <option value="{{ $value->id }}" selected>{{ $value->name }}</option>
+                                            @else
+                                                <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                            @endif
+
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('classId'))
+                                        <small style="color:red;">{{$errors->first('classId')}}</small>
+                                    @endif
+                                </div>
+                            </div>
+
+                            
 
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
