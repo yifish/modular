@@ -34,15 +34,29 @@
                                 <input type="hidden"  name="id" value="{{$article->id}}">
                             @endif
                             <div class="am-form-group">
-                                <label for="admin-name" class="am-u-sm-3 am-form-label">名称</label>
+                                <label for="admin-name" class="am-u-sm-3 am-form-label">标题</label>
                                 <div class="am-u-sm-9">
                                     @if($formType == 'update')
-                                        <input type="text" id="admin-name" name="name" value="{{$article->name}}" placeholder="请输入名称">
+                                        <input type="text" id="admin-name" name="title" value="{{$article->title}}" placeholder="请输入标题">
                                     @else
-                                        <input type="text" id="admin-name" name="name" value="{{old('name')}}" placeholder="请输入名称">
+                                        <input type="text" id="admin-name" name="title" value="{{old('title')}}" placeholder="请输入标题">
                                     @endif
                                     @if ($errors->has('name'))
-                                        <small style="color:red;">{{$errors->first('name')}}</small>
+                                        <small style="color:red;">{{$errors->first('title')}}</small>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="admin-name" class="am-u-sm-3 am-form-label">简介</label>
+                                <div class="am-u-sm-9">
+                                    @if($formType == 'update')
+                                        <input type="text" id="admin-name" name="intro" value="{{$article->intro}}" placeholder="请输入简介">
+                                    @else
+                                        <input type="text" id="admin-name" name="intro" value="{{old('intro')}}" placeholder="请输入简介">
+                                    @endif
+                                    @if ($errors->has('name'))
+                                        <small style="color:red;">{{$errors->first('intro')}}</small>
                                     @endif
                                 </div>
                             </div>

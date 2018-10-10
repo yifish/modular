@@ -22,6 +22,7 @@ class Article extends Migration
             $table->tinyInteger('types')->default(0)->comment('类型，默认0:没有发布人1:管理员2:用户');
             $table->string('thumbnail', 300)->default('')->comment('缩略图');
             $table->string('intro', 300)->default('')->comment('简介');
+            $table->string('title', 300)->default('')->comment('标题');
             $table->text('content')->nullable()->comment('文章内容');
             $table->tinyInteger('status')->default(0)->comment('类型，默认0:未审核1:通过2:拒绝');
             $table->integer('give')->default(0)->comment('点赞');
