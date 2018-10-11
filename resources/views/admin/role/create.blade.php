@@ -51,7 +51,7 @@
                                 <label for="user-competence" class="am-u-sm-3 am-form-label">权限</label>
                                 <div class="am-u-sm-9">
                                     @foreach ($competence as $key => $value)
-                                        <div>
+                                        <div class="am-u-sm-12">
                                             <div class="tpl-switch">
                                                 <label class="am-checkbox am-secondary" style="padding: 0 0 0 20px;">
                                                     @if($formType == 'update')
