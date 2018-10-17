@@ -25,7 +25,7 @@ class AdminWebController extends BaseController
     /*
      * 网页表单验证
      * */
-    public function myValidator($functions = 'login', Request $request)
+    public function myValidator($functions, Request $request)
     {
         try {
             $validator = Validator::make($request->all(), ValidatorRequest::get($functions));
