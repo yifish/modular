@@ -72,10 +72,24 @@
                             </div>
 
                             <div class="am-form-group">
+                                <label for="article-releaseTime" class="am-u-sm-3 am-form-label">发布时间</label>
+                                <div class="am-u-sm-9">
+                                    @if($formType == 'update')
+                                        <input type="text" name="releaseTime" value="{{date('Y-m-d', $article->releaseTime)}}" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="" readonly/>
+                                    @else
+                                        <input type="text" name="releaseTime" value="{{old('give')}}" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="" readonly/>
+                                    @endif
+                                    @if ($errors->has('releaseTime'))
+                                        <small style="color:red;">{{$errors->first('releaseTime')}}</small>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
                                 <label for="article-roleId" class="am-u-sm-3 am-form-label">分类</label>
                                 <div class="am-u-sm-9">
                                     <select id="article-roleId" name="classId">
-                                        <option value="-1">请选择分类</option>
+                                        <option value="">请选择分类</option>
                                         @foreach($articleClass as $key => $value)
                                             @if ($formType == 'update' && $article->classId == $value->id)
                                                 <option value="{{ $value->id }}" selected>{{ $value->name }}</option>
@@ -110,7 +124,61 @@
                             <div class="am-form-group">
                                 <label for="article-content" class="am-u-sm-3 am-form-label">内容</label>
                                 <div class="am-u-sm-9">
-                                    <div id="article-content"></div>
+                                    <div id="article-content">{{ $article->content }}</div>
+                                </div>
+                                <textarea for-name="article-content" name="contents" style="display: none;">{{ $article->content }}</textarea>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="article-give" class="am-u-sm-3 am-form-label">点赞数</label>
+                                <div class="am-u-sm-9">
+                                    @if($formType == 'update')
+                                        <input type="text" id="article-give" name="give" value="{{$article->give}}" placeholder="请输入点赞数量">
+                                    @else
+                                        <input type="text" id="article-give" name="give" value="{{old('give')}}" placeholder="请输入点赞数量">
+                                    @endif
+                                    @if ($errors->has('give'))
+                                        <small style="color:red;">{{$errors->first('give')}}</small>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="article-status" class="am-u-sm-3 am-form-label">状态</label>
+                                <div class="am-u-sm-9">
+                                    <div class="tpl-switch" style="float:left;padding-top:.6em;">
+                                        <label class="am-radio am-secondary" style="padding-top:0;">
+                                            @if($formType == 'update')
+                                                <input type="radio" for="article-status" name="status" value="0" data-am-ucheck checked>
+                                            @else
+                                                <input type="radio" for="article-status" name="status" value="0" data-am-ucheck checked>
+                                            @endif
+                                            <span>审核</span>
+                                        </label>
+
+                                    </div>
+                                    <div class="tpl-switch" style="float:left;padding: 0 0 0 10px;padding-top:.6em;">
+                                        <label class="am-radio am-secondary" style="padding-top:0;">
+                                            @if($formType == 'update')
+                                                <input type="radio" for="article-status" name="status" value="1" data-am-ucheck>
+                                            @else
+                                                <input type="radio" for="article-status" name="status" value="1" data-am-ucheck>
+                                            @endif
+                                            <span>通过</span>
+                                        </label>
+
+                                    </div>
+                                    <div class="tpl-switch" style="float:left;padding: 0 0 0 10px;padding-top:.6em;">
+                                        <label class="am-radio am-secondary" style="padding-top:0;">
+                                            @if($formType == 'update')
+                                                <input type="radio" for="article-status" name="status" value="2" data-am-ucheck>
+                                            @else
+                                                <input type="radio" for="article-status" name="status" value="2" data-am-ucheck>
+                                            @endif
+                                            <span>拒绝</span>
+                                        </label>
+
+                                    </div>
                                 </div>
                             </div>
 
@@ -162,11 +230,16 @@
             $("#admin-thumbnail").on('change', function(){
                 var imgRUL = getPhoto(this);
                 $("img[for-src='"+ $(this).attr('id') +"']").attr('src', imgRUL);
-            })
-            var E = window.wangEditor
-            var editor = new E('#article-content')
-            editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
-            editor.create()
+            });
+            var E = window.wangEditor;
+            var editor = new E('#article-content');
+            editor.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
+            editor.customConfig.onchange = function (html) {
+                // 监控变化，同步更新到 textarea
+                $("textarea[for-name='article-content']").val(html);
+                $("textarea[for-name='article-content']").html(html);
+            };
+            editor.create();
         })
     </script>
 @endsection

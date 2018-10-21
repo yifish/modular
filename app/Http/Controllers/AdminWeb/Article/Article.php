@@ -96,7 +96,43 @@ class Article extends AdminWebController
         $articleClass = articleClass::all();
         return view('admin.article.article.create', compact('articleClass', 'article', 'formType'));
     }
+    /*
+     * 文章创建方法
+     * */
+    public function createArticlePost(Request $request)
+    {
+        $this->myValidator('articleCreate', $request);
+        $this->saveStore($request);
+        $this->article->types = 1;
+        $this->article->publisherId = session('admin.id');
+        $this->article->publisherName = session('admin.name');
+    }
 
-
-
+    /*
+     * 修改方法
+     * */
+    public function saveStore(Request $request)
+    {
+        if ($request->input('intro')) {
+            $this->article->intro = $request->intro;
+        }
+        if ($request->input('title')) {
+            $this->article->title = $request->title;
+        }
+        if ($request->input('contents')) {
+            $this->article->content = $request->contents;
+        }
+        if ($request->input('status')) {
+            $this->article->status = $request->status;
+        }
+        if ($request->input('give')) {
+            $this->article->give = $request->give;
+        }
+        if ($request->input('releaseTime')) {
+            $this->article->releaseTime = $request->releaseTime;
+        }
+        if ($request->input('classId')) {
+            $this->article->classId = $request->classId;
+        }
+    }
 }

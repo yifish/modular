@@ -60,6 +60,15 @@ class Validate
         ),
         'name' => array(
             'name' => 'required|string|min:2|max:50'
-        )
+        ),
+        'articleCreate' => array(
+            'intro' => 'required|string|min:5|max:300',
+            'title' => 'required|string|min:5|max:300',
+            'releaseTime' => 'required|string',
+            'classId' => 'required|numeric',
+            'contents' => 'required|string',
+            'status' => 'numeric',
+            'give' => 'numeric',
+        ),
     );
 }
