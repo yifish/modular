@@ -34,7 +34,9 @@
             <div class="tpl-block">
                 <div class="am-g tpl-amazeui-form">
                     <div class="am-u-sm-12 am-u-md-9">
-                        <form action="{{url('admin/'. $formType .'ArticlePost')}}" method="post" class="am-form am-form-horizontal">
+                        <form action="{{url('admin/'. $formType .'ArticlePost')}}" enctype="multipart/form-data" method="post" class="am-form am-form-horizontal">
+                            {{ csrf_field() }}
+                            {{--<input type="hidden" name="_token" class="tag_token" value="<?php echo csrf_token(); ?>">--}}
                             @if ($errors->has('errors'))
                                 <small style="color:red;">{{$errors->first('errors')}}</small>
                             @endif
@@ -241,5 +243,52 @@
             };
             editor.create();
         })
+        //图片上传
+        {{--$(function () {--}}
+            {{--$("#article-thumbnail").change(function () {--}}
+                {{--uploadImage();--}}
+            {{--})--}}
+        {{--})--}}
+        {{--function uploadImage() { //  判断是否有选择上传文件--}}
+            {{--// alert(123);--}}
+            {{--var imgPath = $("#article-thumbnail").val();--}}
+            {{--// alert(imgPath);--}}
+            {{--if (imgPath == "") {--}}
+                {{--alert("请选择上传图片！");--}}
+                {{--return;--}}
+            {{--}--}}
+            {{--//判断上传文件的后缀名--}}
+            {{--var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);--}}
+            {{--// alert(strExtension);--}}
+            {{--if (strExtension != 'jpg' && strExtension != 'gif'--}}
+                {{--&& strExtension != 'png' && strExtension != 'bmp') {--}}
+                {{--alert("请选择图片文件");--}}
+                {{--return;--}}
+            {{--}--}}
+            {{--var formData = new FormData();--}}
+            {{--// alert(formData);--}}
+            {{--formData.append('thumbnail',$('#article-thumbnail')[0].files[0]);--}}
+            {{--console.log(formData);--}}
+            {{--$.ajax({--}}
+                {{--type: "POST",--}}
+                {{--cache: false,--}}
+                {{--headers: {--}}
+                    {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+                {{--},--}}
+                {{--url: "{{route('/up')}}",--}}
+                {{--data: formData,--}}
+                {{--contentType: false,--}}
+                {{--processData: false,--}}
+                {{--success: function(data) {--}}
+                    {{--console.log(data);--}}
+                    {{--// $('#art_thumb').attr('src', data);--}}
+                    {{--$("input[name='cate_img']").val(data);--}}
+                      {{--alert('图标上传成功', {icon: 6});--}}
+                {{--},--}}
+                {{--error: function(XMLHttpRequest, textStatus, errorThrown) {--}}
+                    {{--alert('图片上传失败', {icon: 5});--}}
+                {{--}--}}
+            {{--});--}}
+        // }
     </script>
 @endsection

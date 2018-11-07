@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminWeb\AdminWebController;
 use Illuminate\Http\Request;
 use App\MyModel\article\articleClass;
 use App\MyModel\article\articleModel;
+use App\MyCommon\Upload;
 
 class Article extends AdminWebController
 {
@@ -101,8 +102,10 @@ class Article extends AdminWebController
      * */
     public function createArticlePost(Request $request)
     {
+//        dd($request);
         $this->myValidator('articleCreate', $request);
         $this->saveStore($request);
+//        dd($this->saveStore($request));
         $this->article->types = 1;
         $this->article->publisherId = session('admin.id');
         $this->article->publisherName = session('admin.name');
@@ -113,6 +116,7 @@ class Article extends AdminWebController
      * */
     public function saveStore(Request $request)
     {
+        dd($request);
         if ($request->input('intro')) {
             $this->article->intro = $request->intro;
         }
@@ -134,5 +138,19 @@ class Article extends AdminWebController
         if ($request->input('classId')) {
             $this->article->classId = $request->classId;
         }
+        //图片存入库中
+        $this->fileReceive();
+//        dd($this->article);
+    }
+    public function fileReceive(Request $request)
+    {
+        if ($request->file('thumbnail')){
+            $file=$request->file('thumbnail');
+            return $this->article-> thumbnail = Upload::uploadFile($file);
+        }
+    }
+    //js的提交
+    public function ajax_file(){
+        $this->fileReceive();
     }
 }

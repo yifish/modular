@@ -62,11 +62,13 @@ class AdminWeb extends AdminWebController
      * */
     public function createAdminPost(Request $request)
     {
+        //验证管理员添加权限和注册权限
         $this->myValidator(['adminCreate', 'register'], $request);
         $this->saveStore($request);
         if ($this->admin->save()) {
             return redirect('admin/adminList');
         }
+        //trance()为语言包函数
         throw new WebException(['errors' => trans('admin.error_create')]);
     }
     /*

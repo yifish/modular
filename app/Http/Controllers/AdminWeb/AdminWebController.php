@@ -30,6 +30,7 @@ class AdminWebController extends BaseController
         try {
             $validator = Validator::make($request->all(), ValidatorRequest::get($functions));
         } catch (\Exception $e) {
+            //跳转到模板的404错误页面
             abort(404);
 //            return response('404');
         }
