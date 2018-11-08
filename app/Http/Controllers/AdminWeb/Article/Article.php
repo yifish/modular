@@ -16,6 +16,7 @@ use App\MyCommon\Upload;
 
 class Article extends AdminWebController
 {
+    use Upload;
     private $articleClass;
 
     private $article;
@@ -146,7 +147,7 @@ class Article extends AdminWebController
     {
         if ($request->file('thumbnail')){
             $file=$request->file('thumbnail');
-            return $this->article-> thumbnail = Upload::uploadFile($file);
+            return $this->article-> thumbnail = $this->uploadFile($file);
         }
     }
     //js的提交
