@@ -110,6 +110,8 @@ class Article extends AdminWebController
         $this->article->types = 1;
         $this->article->publisherId = session('admin.id');
         $this->article->publisherName = session('admin.name');
+        $this->article->save();
+//        dd($this->article);
     }
 
     /*
@@ -117,7 +119,7 @@ class Article extends AdminWebController
      * */
     public function saveStore(Request $request)
     {
-        dd($request);
+//        dd($request->all());
         if ($request->input('intro')) {
             $this->article->intro = $request->intro;
         }
@@ -140,14 +142,20 @@ class Article extends AdminWebController
             $this->article->classId = $request->classId;
         }
         //图片存入库中
-        $this->fileReceive();
+//        $this->fileReceive();
 //        dd($this->article);
+//        dd($request->file('thumbnail'));
+//        if ($request->file('thumbnail')){
+//            $file=$request->file('thumbnail');
+//            $this->article-> thumbnail = $this->uploadFile($file);
+//        }
+        $this->fileReceive();
     }
     public function fileReceive(Request $request)
     {
         if ($request->file('thumbnail')){
             $file=$request->file('thumbnail');
-            return $this->article-> thumbnail = $this->uploadFile($file);
+            $this->article-> thumbnail = $this->uploadFile($file);
         }
     }
     //js的提交
