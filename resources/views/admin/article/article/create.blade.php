@@ -46,12 +46,12 @@
                             @endif
 
                             <div class="am-form-group">
-                                <label for="article-name" class="am-u-sm-3 am-form-label">标题</label>
+                                <label for="article-title" class="am-u-sm-3 am-form-label">标题</label>
                                 <div class="am-u-sm-9">
                                     @if($formType == 'update')
-                                        <input type="text" id="article-name" name="title" value="{{$article->title}}" placeholder="请输入标题">
+                                        <input type="text" id="article-title" name="title" value="{{$article->title}}" placeholder="请输入标题">
                                     @else
-                                        <input type="text" id="article-name" name="title" value="{{old('title')}}" placeholder="请输入标题">
+                                        <input type="text" id="article-title" name="title" value="{{old('title')}}" placeholder="请输入标题">
                                     @endif
                                     @if ($errors->has('title'))
                                         <small style="color:red;">{{$errors->first('title')}}</small>
@@ -60,12 +60,12 @@
                             </div>
 
                             <div class="am-form-group">
-                                <label for="article-name" class="am-u-sm-3 am-form-label">简介</label>
+                                <label for="article-intro" class="am-u-sm-3 am-form-label">简介</label>
                                 <div class="am-u-sm-9">
                                     @if($formType == 'update')
-                                        <input type="text" id="article-name" name="intro" value="{{$article->intro}}" placeholder="请输入简介">
+                                        <input type="text" id="article-intro" name="intro" value="{{$article->intro}}" placeholder="请输入简介">
                                     @else
-                                        <input type="text" id="article-name" name="intro" value="{{old('intro')}}" placeholder="请输入简介">
+                                        <input type="text" id="article-intro" name="intro" value="{{old('intro')}}" placeholder="请输入简介">
                                     @endif
                                     @if ($errors->has('intro'))
                                         <small style="color:red;">{{$errors->first('intro')}}</small>
@@ -88,9 +88,9 @@
                             </div>
 
                             <div class="am-form-group">
-                                <label for="article-roleId" class="am-u-sm-3 am-form-label">分类</label>
+                                <label for="article-classId" class="am-u-sm-3 am-form-label">分类</label>
                                 <div class="am-u-sm-9">
-                                    <select id="article-roleId" name="classId">
+                                    <select id="article-classId" name="classId">
                                         <option value="">请选择分类</option>
                                         @foreach($articleClass as $key => $value)
                                             @if ($formType == 'update' && $article->classId == $value->id)
@@ -229,7 +229,7 @@
         }
 
         $(function(){
-            $("#admin-thumbnail").on('change', function(){
+            $("#article-thumbnail").on('change', function(){
                 var imgRUL = getPhoto(this);
                 $("img[for-src='"+ $(this).attr('id') +"']").attr('src', imgRUL);
             });

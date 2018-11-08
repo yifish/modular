@@ -70,5 +70,14 @@ class Validate
             'status' => 'numeric',
             'give' => 'numeric',
         ),
+        'articleUpdate' => array(
+            'intro' => 'string|min:5|max:300',
+            'title' => 'string|min:5|max:300',
+            'releaseTime' => 'string',
+            'classId' => 'numeric',
+            'contents' => 'string',
+            'status' => 'numeric',
+            'give' => 'numeric',
+        ),
     );
 }

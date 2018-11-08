@@ -16,7 +16,6 @@ use App\MyCommon\Upload;
 
 class Article extends AdminWebController
 {
-    use Upload;
     private $articleClass;
 
     private $article;
@@ -103,15 +102,28 @@ class Article extends AdminWebController
      * */
     public function createArticlePost(Request $request)
     {
-//        dd($request);
         $this->myValidator('articleCreate', $request);
         $this->saveStore($request);
-//        dd($this->saveStore($request));
         $this->article->types = 1;
         $this->article->publisherId = session('admin.id');
         $this->article->publisherName = session('admin.name');
-        $this->article->save();
-//        dd($this->article);
+        if ($this->article->save()) {
+            return redirect('admin/articleList');
+        }
+        throw new WebException(['errors' => trans('admin.error_create')]);
+    }
+    /*
+     * 文章修改方法
+     * */
+    public function updateArticlePost(Request $request)
+    {
+        $this->myValidator(['id', 'articleUpdate'], $request);
+        $this->article = articleModel::find($request->id);
+        $this->saveStore($request);
+        if ($this->article->save()) {
+            return redirect('admin/articleList');
+        }
+        throw new WebException(['errors' => trans('admin.error_update')]);
     }
 
     /*
@@ -119,7 +131,6 @@ class Article extends AdminWebController
      * */
     public function saveStore(Request $request)
     {
-//        dd($request->all());
         if ($request->input('intro')) {
             $this->article->intro = $request->intro;
         }
@@ -141,25 +152,9 @@ class Article extends AdminWebController
         if ($request->input('classId')) {
             $this->article->classId = $request->classId;
         }
-        //图片存入库中
-//        $this->fileReceive();
-//        dd($this->article);
-//        dd($request->file('thumbnail'));
-//        if ($request->file('thumbnail')){
-//            $file=$request->file('thumbnail');
-//            $this->article-> thumbnail = $this->uploadFile($file);
-//        }
-        $this->fileReceive();
-    }
-    public function fileReceive(Request $request)
-    {
-        if ($request->file('thumbnail')){
-            $file=$request->file('thumbnail');
-            $this->article-> thumbnail = $this->uploadFile($file);
+        if ($request->file('thumbnail') || $request->input('thumbnail')){
+            $upload = new Upload();
+            $this->article-> thumbnail = $upload->uploadFile($request, 'thumbnail');
         }
-    }
-    //js的提交
-    public function ajax_file(){
-        $this->fileReceive();
     }
 }

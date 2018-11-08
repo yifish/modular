@@ -7,44 +7,66 @@
  */
 namespace App\MyCommon;
 
+use Symfony\Component\HttpFoundation\File\File;
 
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-trait Upload
+class Upload
 {
     /*
-     * 上次图片的方法
-     *  路徑使用MD5加密
+     * 上传图片的方法
      * */
-    function uploadFile($file)
+    function uploadFile($request, $fileName)
     {
-        $url_path = 'uploads/cover';
+        $imageUrl = false;
+        if ($request->input($fileName)) {
+            $imageUrl = $this->ajaxUploadFile($request->input($fileName));
+        }
+        if ($request->file($fileName)) {
+            $imageUrl = $this->formUploadFile($request->file($fileName));
+        }
+        if ($imageUrl) {
+            return $imageUrl;
+        }
+        return '/images/no-images.png';
+    }
+
+    /*
+     * 异步上传图片
+     * */
+    public function ajaxUploadFile($string)
+    {
+        return false;
+    }
+
+    /*
+     * 同步上传图片
+     * */
+    public function formUploadFile($file)
+    {
+        $urlPath = 'uploads/' . date('Y') . '/' . date('m') .'/' . date('d') . '/';
         if ($file->isValid()) {
             $clientName = $file->getClientOriginalName();// 文件原名
             $tmpName = $file->getFileName();
             $realPath = $file->getRealPath();//临时文件的绝对路径
             $entension = $file->getClientOriginalExtension();//擴展名
-            $bool=$this->checkPicRule($entension);
+            $bool = $this->checkPicRule($entension);
             if ($bool==true){
-                $newName = md5(date("Y-m-d H:i:s") . $clientName) . "." . $entension;
-                $path = $file->move($url_path, $newName);
-                $namePath = $url_path . '/' . $newName;
-                return $path;
+                $newName = md5($clientName . date("YmdHis")) . "." . $entension;
+                $path = $file->move($urlPath, $newName);
+                $namePath = $path->__toString();
+                return $namePath;
             }
-        }else{
-            return false;
         }
+        return false;
     }
 
-/*
-*验证图片的格式
- */
-
-    public function checkPicRule($pic_extention)
+    /*
+    * 验证图片的格式
+    */
+    public function checkPicRule($picExtention)
     {
-        $rule = ['jpg', 'png', 'gif'];
-        if (!in_array($pic_extention, $rule)) {
-            return '图片格式为jpg,png,gif';
+        $extention = ['jpg', 'png', 'gif'];
+        if (!in_array($picExtention, $extention)) {
+            return false;
         }else{
             return true;
         }
