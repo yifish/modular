@@ -35,8 +35,6 @@
                 <div class="am-g tpl-amazeui-form">
                     <div class="am-u-sm-12 am-u-md-9">
                         <form action="{{url('admin/'. $formType .'ArticlePost')}}" enctype="multipart/form-data" method="post" class="am-form am-form-horizontal">
-                            {{ csrf_field() }}
-                            {{--<input type="hidden" name="_token" class="tag_token" value="<?php echo csrf_token(); ?>">--}}
                             @if ($errors->has('errors'))
                                 <small style="color:red;">{{$errors->first('errors')}}</small>
                             @endif
