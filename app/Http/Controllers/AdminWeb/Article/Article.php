@@ -134,7 +134,14 @@ class Article extends AdminWebController
         }
         throw new WebException(['errors' => trans('admin.error_update')]);
     }
-
+    /*
+     * 删除方法
+     * */
+    public function articleDelete(articleModel $article)
+    {
+        $article->forceDelete();
+        return redirect('admin/articleList');
+    }
     /*
      * 修改方法
      * */
