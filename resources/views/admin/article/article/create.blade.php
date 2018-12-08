@@ -124,9 +124,9 @@
                             <div class="am-form-group">
                                 <label for="article-content" class="am-u-sm-3 am-form-label">内容</label>
                                 <div class="am-u-sm-9">
-                                    <div id="article-content">{{ $article->content }}</div>
+                                    <div id="article-content"></div>
                                 </div>
-                                <textarea for-name="article-content" name="contents" style="display: none;">{{ $article->content }}</textarea>
+                                <textarea for-name="article-content" name="contents" style="display: none;">{{ $article->content}}</textarea>
                             </div>
 
                             <div class="am-form-group">

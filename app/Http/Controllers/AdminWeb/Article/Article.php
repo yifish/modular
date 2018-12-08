@@ -98,6 +98,15 @@ class Article extends AdminWebController
         return view('admin.article.article.create', compact('articleClass', 'article', 'formType'));
     }
     /*
+     * 文章修改页
+     * */
+    public function articleUpdate(articleModel $article)
+    {
+        $this->formType = 'update';
+        $this->article = $article;
+        return $this->articleCreate();
+    }
+    /*
      * 文章创建方法
      * */
     public function createArticlePost(Request $request)
