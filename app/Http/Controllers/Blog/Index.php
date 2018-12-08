@@ -16,6 +16,6 @@ class Index
      * */
     public function index()
     {
-        echo "this is blog";
+        return view('blog.welcome');
     }
 }
