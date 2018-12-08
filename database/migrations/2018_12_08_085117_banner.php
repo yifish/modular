@@ -14,6 +14,12 @@ class Banner extends Migration
     public function up()
     {
         //
+        Schema::create('banner', function (Blueprint $table) {
+            $table->increments('id')->comment('轮播图表');
+            $table->string('thumbnail', 300)->default('')->comment('图片地址');
+            $table->tinyInteger('status')->default(0)->comment('类型，默认0:不显示 1:显示 2:不显示');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -24,5 +30,6 @@ class Banner extends Migration
     public function down()
     {
         //
+        Schema::drop('banner');
     }
 }

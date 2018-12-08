@@ -46,5 +46,6 @@ class Article extends Migration
     {
         //
         Schema::drop('article');
+        Schema::drop('article_class');
     }
 }
