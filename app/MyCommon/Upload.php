@@ -52,7 +52,7 @@ class Upload
             if ($bool==true){
                 $newName = md5($clientName . date("YmdHis")) . "." . $entension;
                 $path = $file->move($urlPath, $newName);
-                $namePath = $path->__toString();
+                $namePath = '/' . $path->__toString();
                 return $namePath;
             }
         }

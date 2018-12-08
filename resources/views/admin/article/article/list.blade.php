@@ -61,6 +61,9 @@
                                 <tr>
                                     <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
                                     <th>ID</th>
+                                    <th>标题</th>
+                                    <th>简介</th>
+                                    <th>缩略图</th>
                                     <th>创建日期</th>
                                     <th>更新日期</th>
                                     <th>操作</th>
@@ -71,6 +74,9 @@
                                     <tr>
                                         <td><input type="checkbox"></td>
                                         <td>{{$item->id}}</td>
+                                        <td>{{$item->title}}</td>
+                                        <td>{{$item->intro}}</td>
+                                        <td><img style="width: 100px;" src="{{$item->thumbnail}}"></td>
                                         <td>{{$item->created_at}}</td>
                                         <td>{{$item->updated_at}}</td>
                                         <td>
