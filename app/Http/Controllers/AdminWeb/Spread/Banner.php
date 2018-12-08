@@ -17,13 +17,13 @@ class Banner extends AdminWebController
 
     public function __construct()
     {
-        
+
     }
 
     /*
      * 轮播图页
      * */
-    public function barnerList()
+    public function bannerList()
     {
 
     }
