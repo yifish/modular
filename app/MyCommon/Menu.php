@@ -22,6 +22,9 @@ class Menu
         'article' => array('name' => '文章管理', 'submenu' => array(
             'articleList' => '文章列表',
             'articleClassList' => '文章分类列表',
+        )),
+        'spread' => array('name' => '推广管理', 'submenu' => array(
+            'bannerList' => '轮播图'
         ))
 
     );
@@ -34,6 +37,7 @@ class Menu
         'userList' => 'admin/userList',
         'articleList' => 'admin/articleList',
         'articleClassList' => 'admin/articleClassList',
+        'bannerList' => 'admin/bannerList',
     );
     /*
      * 页面按钮
@@ -63,6 +67,9 @@ class Menu
             'admin/articleClassList',
             'admin/articleCCreate',
             'admin/articleCUpdate'
+        ),
+        'bannerList' => array(
+            'admin/bannerList'
         )
     );
     /*
@@ -76,5 +83,7 @@ class Menu
         'article' => 'am-icon-file-text',
         'articleList' => '',
         'articleClassList' => '',
+        'spread' => 'am-icon-image',
+        'bannerList' => ''
     );
 }

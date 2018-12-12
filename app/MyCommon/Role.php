@@ -37,6 +37,9 @@ class Role
             'articleCreate' => '添加文章',
             'articleUpdate' => '修改文章',
             'articleDelete' => '删除文章',
-        ))
+        )),
+        'spread' => array('name' => '推广管理', 'competence' => array(
+            'bannerList' => '轮播图'
+        )),
     );
 }
