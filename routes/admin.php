@@ -55,3 +55,9 @@ Route::group(['namespace' => 'AdminWeb\Article'],function () {
     Route::get('articleDelete/{article?}', 'Article@articleDelete')->middleware('webRole:articleDelete');
 
 });
+
+Route::group(['namespace' => 'AdminWeb\Spread'],function () {
+
+    Route::get('bannerList', 'Banner@bannerList')->middleware('webRole:bannerList');
+
+});

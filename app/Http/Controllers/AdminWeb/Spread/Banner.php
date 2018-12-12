@@ -25,6 +25,6 @@ class Banner extends AdminWebController
      * */
     public function bannerList()
     {
-
+        echo 1;
     }
 }
