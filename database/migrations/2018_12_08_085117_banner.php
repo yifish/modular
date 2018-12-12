@@ -18,6 +18,7 @@ class Banner extends Migration
             $table->increments('id')->comment('轮播图表');
             $table->string('thumbnail', 300)->default('')->comment('图片地址');
             $table->tinyInteger('status')->default(0)->comment('类型，默认0:不显示 1:显示 2:不显示');
+            $table->tinyInteger('types')->default(0)->comment('类型，默认0:不显示 1:blog 2:shop');
             $table->timestamps();
         });
     }
